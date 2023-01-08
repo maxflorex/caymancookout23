@@ -7,10 +7,10 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['var(--font-space)']
+				sans: ['var(--font-syne)']
 			},
 			colors: {
-				'cc': {
+				'mx': {
 					100: '#F8F8F8 ',
 					200: '#F2F2F2',
 					300: '#00FFFF',

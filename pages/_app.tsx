@@ -1,11 +1,11 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
-import { Space_Grotesk } from '@next/font/google'
+import { Syne } from '@next/font/google'
 
-const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = Syne({
 	subsets: ['latin'],
-	variable: '--font-space'
+	variable: '--font-syne'
 })
 
 export default function App({ Component, pageProps }: AppProps) {
