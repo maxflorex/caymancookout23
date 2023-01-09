@@ -5,3 +5,18 @@
 html {
     scroll-behavior: smooth;
 }
+
+.btn {
+    @apply px-2 py-1 border border-white text-white rounded-full transition-all duration-300 font-semibold text-sm
+     hover:bg-mx-400 hover:border-mx-400;
+}
+
+.btn2 {
+    @apply bg-mx-400 px-5 py-3 flex items-center gap-2 font-semibold  transition-all duration-500 rounded-full
+    hover:text-mx-400 hover:bg-mx-300;
+}
+
+.btn3 {
+    @apply px-2 py-1 border border-white border-opacity-10 text-white rounded-full transition-all duration-300 font-semibold text-sm
+    hover:border-opacity-100
+}

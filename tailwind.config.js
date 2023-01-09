@@ -7,7 +7,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['var(--font-syne)']
+				sans: ['var(--font-syne)'],
+				handwritten: ['var(--font-msmadi)']
 			},
 			colors: {
 				'mx': {
