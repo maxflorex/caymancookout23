@@ -6,8 +6,8 @@ const Navigation = (props: Props) => {
     return (
         <nav className=''>
 
-            <div className="flex justify-between items-center container mx-auto py-4 border-b-[1px] border-mx-400 border-opa border-opacity-10">
-                <ul className="flex gap-4 drop-shadow-sm font-semibold">
+            <div className="flex md:justify-between justify-center items-center container mx-auto py-4 border-b-[1px] border-mx-400 border-opa border-opacity-10">
+                <ul className="md:flex gap-4 drop-shadow-sm font-semibold hidden">
                     <a target='_blank' rel='noreferrer' href='https://deepblueimages.com/#about' className='text-mx-400 text-opacity-30 hover:text-opacity-100'>About</a>
                     <a target='_blank' rel='noreferrer' href='https://deepblueimages.com/#team' className='text-mx-400 text-opacity-30 hover:text-opacity-100'>Team</a>
                     <a target='_blank' rel='noreferrer' href='https://deepblueimages.com/gallery/' className='text-mx-400 text-opacity-30 hover:text-opacity-100'>Gallery</a>

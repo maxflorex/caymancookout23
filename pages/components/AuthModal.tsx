@@ -34,8 +34,8 @@ const Auth = ({ setShow }: Props) => {
 
 	return (
 		<>
-			<div className="absolute top-0 letf-0 w-full h-full z-10 overflow-hidden">
-				<div className="flex justify-center items-center h-full w-full relative">
+			<div className="absolute top-0 letf-0 w-screen z-10 overflow-hidden">
+				<div className="flex justify-center items-center min-h-screen w-full relative">
 
 					{/* LOGO */}
 					<Link href='/' className='text-3xl font-handwritten text-mx-400 text-center pt-4 z-20 w-full flex justify-center absolute top-0 left-0' onClick={closeAuth}>Deep Blue Images</Link>
