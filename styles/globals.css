@@ -7,16 +7,16 @@ html {
 }
 
 .btn {
-    @apply px-2 py-1 border border-white text-white rounded-full transition-all duration-300 font-semibold text-sm
-     hover:bg-mx-400 hover:border-mx-400;
+    @apply px-2 py-1 border border-mx-400 border-opacity-30 text-mx-400 text-opacity-30 rounded-full transition-all duration-300 font-semibold text-sm
+     hover:text-opacity-100 hover:border-mx-400;
 }
 
 .btn2 {
-    @apply bg-mx-400 px-5 py-3 flex items-center gap-2 font-semibold  transition-all duration-500 rounded-full
-    hover:text-mx-400 hover:bg-mx-300;
+    @apply bg-mx-400 px-5 py-3 flex items-center gap-2 font-semibold  transition-all duration-300 rounded-full border border-mx-400
+    hover:text-mx-400 hover:bg-transparent;
 }
 
 .btn3 {
-    @apply px-2 py-1 border border-white border-opacity-10 text-white rounded-full transition-all duration-300 font-semibold text-sm
+    @apply px-2 py-1 border border-white border-opacity-10 text-white rounded-full transition-all duration-150 font-semibold text-sm
     hover:border-opacity-100
 }

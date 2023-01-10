@@ -43,18 +43,18 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 </button>
 
                 {/* NEXT */}
-                <div className="group absolute h-full flex items-center left-0" onClick={prev}>
+                <div className="group/img group/arrow absolute h-full flex items-center left-0" onClick={prev}>
                     <div className="relative h-48 w-16 flex items-center z-10 cursor-pointer">
-                        <i className="ri-arrow-left-line absolute h-48 w-16 flex items-center z-20 justify-center text-white" />
-                        <Image alt='Next Image' src={images[prevImg]} fill className='object-cover opacity-40 group-hover/img:opacity-60 duration-500' />
+                        <i className="ri-arrow-left-line absolute h-48 w-16 flex items-center z-20 justify-center text-white group-hover/arrow:-translate-x-2 duration-150" />
+                        <Image alt='Next Image' src={images[prevImg]} fill className='object-cover object-right opacity-40 group-hover/img:opacity-60 duration-300' />
                     </div>
                 </div>
 
                 {/* PREVIOUS */}
-                <div className="group/img absolute h-full flex items-center right-0" onClick={next}>
+                <div className="group/img group/arrow absolute h-full flex items-center right-0" onClick={next}>
                     <div className="relative h-48 w-16 flex items-center z-10 cursor-pointer">
-                        <i className="ri-arrow-right-line absolute h-48 w-16 flex items-center z-20 justify-center text-white" />
-                        <Image alt='Next Image' src={images[nextImg]} fill className='object-cover opacity-40 group-hover/img:opacity-60 duration-500' />
+                        <i className="ri-arrow-right-line absolute h-48 w-16 flex items-center z-20 justify-center text-white group-hover/arrow:translate-x-2 duration-150" />
+                        <Image alt='Next Image' src={images[nextImg]} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' />
                     </div>
                 </div>
 
