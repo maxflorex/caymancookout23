@@ -50,7 +50,7 @@ const Auth = ({ setShow }: Props) => {
 						<input
 							placeholder='Enter your code...'
 							type="password"
-							className='outline-white hover:outline-mx-200 hover:outline-offset-2 rounded drop-shadow-sm p-2 placeholder:text-mx-400 placeholder:text-opacity-30'
+							className='outline-none rounded drop-shadow-sm focus:drop-shadow-md p-2 placeholder:text-mx-400 placeholder:text-opacity-30'
 							onChange={(e) => setPw(e.target.value)}
 						/>
 						<button className='px-4 py-2 rounded-md bg-mx-400 text-white'>Access</button>
@@ -63,12 +63,12 @@ const Auth = ({ setShow }: Props) => {
 						</div>
 					</form>
 				</div>
+				<footer className='w-full flex items-center justify-center absolute bottom-4 gap-4 text-mx-400 z-20'>
+					<a href='https://www.instagram.com/deepblueimages/' target='_blank' rel='noreferrer' className="ri-instagram-line text-mx-400 text-opacity-30 hover:text-opacity-100 hover:scale-110 duration-200" />
+					<a href='https://www.facebook.com/deepblueimages/' target='_blank' rel='noreferrer' className="ri-facebook-line text-mx-400 text-opacity-30 hover:text-opacity-100 hover:scale-110 duration-200" />
+				</footer>
 			</div>
 
-			<footer className='w-full flex items-center justify-center absolute bottom-4 gap-4 text-mx-400 z-20'>
-				<a href='https://www.instagram.com/deepblueimages/' target='_blank' rel='noreferrer' className="ri-instagram-line text-mx-400 text-opacity-30 hover:text-opacity-100 hover:scale-110 duration-200" />
-				<a href='https://www.facebook.com/deepblueimages/' target='_blank' rel='noreferrer' className="ri-facebook-line text-mx-400 text-opacity-30 hover:text-opacity-100 hover:scale-110 duration-200" />
-			</footer>
 
 		</>
 	)
