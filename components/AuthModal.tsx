@@ -18,7 +18,7 @@ const Auth = ({ setShow }: Props) => {
 
 		e.preventDefault()
 
-		if (pw === 'pass') {
+		if (pw === 'Cookout2023') {
 			router.push('/galleries')
 		} else {
 			alert('Wrong password! Try again')

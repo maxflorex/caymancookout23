@@ -1,12 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { isAuth } from '../../../redux/isAuthSlice'
+import Head from "next/head"
+import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { isAuth } from "../../redux/isAuthSlice"
 
-export default function Auth() {
+
+export default function Cookout23() {
+
     const dispatch = useDispatch()
     const router = useRouter()
     const [pw, setPw] = useState('')
@@ -15,7 +17,7 @@ export default function Auth() {
 
         e.preventDefault()
 
-        if (pw === 'pass') {
+        if (pw === 'Cookout2023') {
             router.push('/galleries')
         } else {
             alert('Wrong password! Try again')
@@ -71,5 +73,6 @@ export default function Auth() {
             </footer>
 
         </>
+
     )
 }
