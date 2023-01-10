@@ -4,11 +4,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { isAuth } from '../../components/redux/isAuthSlice'
+import { isAuth } from '../../../redux/isAuthSlice'
 
-type Props = {}
-
-const Auth = () => {
+export default function Auth() {
     const dispatch = useDispatch()
     const router = useRouter()
     const [pw, setPw] = useState('')
@@ -75,5 +73,3 @@ const Auth = () => {
         </>
     )
 }
-
-export default Auth
