@@ -1,8 +1,6 @@
 import React from 'react'
 
-type Props = {}
-
-const Auth = (props: Props) => {
+export default function Auth() {
   return (
     <div>Nothing to see here</div>
   )

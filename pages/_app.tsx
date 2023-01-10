@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 
 import { Syne, Ms_Madi } from '@next/font/google'
 import { Provider } from 'react-redux'
-import store from './redux/store'
+import store from './components/redux/store'
 
 const spaceGrotesk = Syne({
 	subsets: ['latin'],

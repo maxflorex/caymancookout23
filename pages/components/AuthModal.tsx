@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { isAuth } from '../redux/isAuthSlice'
+import { isAuth } from './redux/isAuthSlice'
 
 type Props = {
 	setShow: any
