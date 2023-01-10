@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { testData } from '../api/test'
+import { testData } from '../pages/api/test'
 
 
 const Albums = () => {

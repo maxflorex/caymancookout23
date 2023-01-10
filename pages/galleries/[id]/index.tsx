@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { testData } from '../../api/test'
-import ImageModal from '../../components/ImageModal'
+import ImageModal from '../../../components/ImageModal'
 
 const Gallery = () => {
     const [expand, setExpand] = useState(false)

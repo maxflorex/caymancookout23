@@ -2,8 +2,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Albums from '../components/Albums'
-import NotAuthorized from '../components/NotAuthorized'
+import Albums from '../../components/Albums'
+import NotAuthorized from '../../components/NotAuthorized'
 
 const Galleries = () => {
 	const Authorization: unknown = useSelector((state: any) => state.authorization.value)

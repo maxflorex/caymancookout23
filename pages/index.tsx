@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import Auth from './components/AuthModal'
-import LatestEvent from './components/LatestEvent'
-import Navigation from './components/Navigation'
+import Auth from '../components/AuthModal'
+import LatestEvent from '../components/LatestEvent'
+import Navigation from '../components/Navigation'
 
 export default function Home() {
 
