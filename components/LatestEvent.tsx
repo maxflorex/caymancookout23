@@ -26,10 +26,10 @@ const LatestEvent = ({ setShow }: Props) => {
                 {/* IMAGES */}
                 <div className="col-span-2 object-cover relative rounded overflow-hidden drop-shadow-sm">
                     <Image
-                        src='/images/samplecc23.jpg'
+                        src='/images/cc7.jpg'
                         alt='Latest Event'
                         fill
-                        className='object-cover'
+                        className='object-cover object-center'
                         priority
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         placeholder='blur'
@@ -39,7 +39,7 @@ const LatestEvent = ({ setShow }: Props) => {
                 </div>
                 <div className="object-cover relative rounded overflow-hidden drop-shadow-sm">
                     <Image
-                        src='/images/samplecc23.jpg'
+                        src='/images/cc13.jpg'
                         alt='Latest Event'
                         fill
                         className='object-cover'
@@ -51,7 +51,7 @@ const LatestEvent = ({ setShow }: Props) => {
                 </div>
                 <div className="object-cover relative rounded overflow-hidden drop-shadow-sm">
                     <Image
-                        src='/images/samplecc23.jpg'
+                        src='/images/cc17.png'
                         alt='Latest Event'
                         fill
                         className='object-cover'

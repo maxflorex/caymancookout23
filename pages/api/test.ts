@@ -19,7 +19,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'stingray-city',
+        slug: 'welcome-reception',
         date: 'Jan 12th',
         day: 1
     },
@@ -43,7 +43,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'seven-mile',
+        slug: 'sommertier-standoff',
         date: 'Jan 12th',
         day: 1
     },
@@ -67,7 +67,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'george-town',
+        slug: 'a-taste-of-little-spain',
         date: 'Jan 13th',
         day: 2
     },
@@ -91,7 +91,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'rum-point',
+        slug: 'cocktails-with-chefs-kristen-and-adrienne',
         date: 'Jan 13th',
         day: 2
     },
@@ -115,7 +115,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'east-end',
+        slug: 'barefoot-bbq',
         date: 'Jan 13th',
         day: 2
     },
@@ -163,7 +163,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'seven-mile',
+        slug: 'a-conversation-with-eric-ripert',
         date: 'Jan 14th',
         day: 3
     },
@@ -187,7 +187,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'george-town',
+        slug: 'cocktail-reception-and-dinner-at-blue',
         date: 'Jan 14th',
         day: 3
     },
@@ -211,7 +211,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'rum-point',
+        slug: 'effervescense-party',
         date: 'Jan 14th',
         day: 3
     },
@@ -235,7 +235,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'east-end',
+        slug: 'rum-and-robusto',
         date: 'Jan 15th',
         day: 4
     },
@@ -259,7 +259,7 @@ export const testData = [
             '/images/cc15.jpeg',
             '/images/cc16.jpg',
         ],
-        slug: 'east-end',
+        slug: 'cocktail-reception-and-dinner-at-agua',
         date: 'Jan 15th',
         day: 4
     },

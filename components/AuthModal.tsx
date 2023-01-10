@@ -34,7 +34,7 @@ const Auth = ({ setShow }: Props) => {
 
 	return (
 		<>
-			<div className="absolute top-0 letf-0 w-screen z-10 overflow-hidden">
+			<div className="absolute top-0 letf-0 w-screen z-10 overflow-hidden backdrop-blur-md">
 				<div className="flex justify-center items-center min-h-screen w-full relative">
 
 					{/* LOGO */}

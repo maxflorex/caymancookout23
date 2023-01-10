@@ -16,7 +16,6 @@ const Galleries = () => {
 		return <NotAuthorized />
 	}
 
-
 	return (
 		<>
 			<Head>

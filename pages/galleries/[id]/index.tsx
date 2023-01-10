@@ -5,12 +5,15 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { testData } from '../../api/test'
 import ImageModal from '../../../components/ImageModal'
+import NotAuthorized from '../../../components/NotAuthorized'
+import { useSelector } from 'react-redux'
 
 const Gallery = () => {
     const [expand, setExpand] = useState(false)
     const router = useRouter()
     const { id } = router.query
     const [currentIndex, setCurrentIndex] = useState(0)
+    const Authorization: unknown = useSelector((state: any) => state.authorization.value)
 
     const gallery = testData.find(item => {
         if (item.slug === id) {
@@ -53,6 +56,10 @@ const Gallery = () => {
         setCurrentIndex(i)
         // DISABLE SCROLLING
         document.body.style.overflow = "hidden";
+    }
+
+    if (!Authorization) {
+        return <NotAuthorized />
     }
 
 

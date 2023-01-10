@@ -33,7 +33,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* LARGE IMAGE */}
                 <div className="h-[70vh] w-[80vw] overflow-hidden relative">
-                    <Image alt='Expanded Image' src={images[currentIndex]} fill className='object-contain' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                    <Image alt='Expanded Image' src={images[currentIndex]} fill className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 2000px) 50vw, 33vw" />
                 </div>
 
                 {/* CLOSE */}
@@ -58,7 +58,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 </div>
 
                 {/* ARROWS - MOBILE */}
-                <div className="absolute bottom-8 flex items-center justify-center w-full md:hidden">
+                <div className="absolute bottom-8 right-8 flex items-center justify-end w-full md:hidden">
 
                     {/* LEFT - PREV */}
                     <div className="flex" onClick={prev}>
@@ -74,6 +74,17 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                         <div className="relative rounded-full bg-mx-400 h-12 w-12 overflow-hidden">
                             <Image alt='Next Image' src={images[nextImg]} fill className='object-cover z-10 opacity-50' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                         </div>
+                    </div>
+                </div>
+
+                {/* DOWNLOAD */}
+
+                <div className="fixed md:bottom-4 bottom-8 md:left-0 left-8 w-full h-full">
+                    <div className="flex items-end md:justify-center justify-start w-full h-full">
+                        <a href={images[currentIndex]} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-100 hover:bg-mx-300 duration-200 flex items-center gap-2'>
+                            <i className="ri-download-line"></i>
+                            Download
+                        </a>
                     </div>
                 </div>
 
