@@ -64,7 +64,7 @@ const LatestEvent = ({ setShow }: Props) => {
             </section>
 
             {/* CALL TO ACTION */}
-            <section className="flex flex-wrap xl:gap-6 md:gap-4 gap-2 container items-center mx-auto xl:py-16 py-8 text-white xl:px-0 px-4 justify-center">
+            <section className="flex md:flex-row flex-col flex-wrap xl:gap-6 md:gap-4 gap-2 container items-center mx-auto xl:py-16 py-8 text-white xl:px-0 px-4 justify-center">
                 <span className="flex gap-2 items-center">
                     <i className="ri-play-fill text-2xl text-mx-400"></i>
                     <h1 className='xl:text-2xl font-semibold'>Cayman Cookout 2023</h1>
