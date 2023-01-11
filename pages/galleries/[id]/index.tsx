@@ -58,7 +58,8 @@ const Gallery = () => {
         document.body.style.overflow = "hidden";
     }
 
-    if (!Authorization) {
+    // DO NOT SHOW IF NOT AUTHORIZED
+    if (Authorization) {
         return <NotAuthorized />
     }
 
@@ -99,15 +100,7 @@ const Gallery = () => {
 
                     {/* INSTRUCTIONS */}
                     <section>
-                        <ul className='pt-4 xl:text-sm text-xs xl:list-outside list-inside list-disc text-white leading-6'>
-                            <li>
-                                Check back to the gallery after 48 hours for full quality final photos and additional event photos.
-                            </li>
-                            <li>
-                                If you do not see your photo in the gallery within 15 minutes, check back after 24 hours... all photos are archived within 24 hours after the event.
-                            </li>
-                        </ul>
-                        <ul className='pb-4 pt-3 xl:text-sm text-xs xl:list-outside list-inside list-decimal text-white leading-6'>
+                        <ul className='pb-4 pt-6 xl:text-sm text-xs xl:list-outside list-inside list-decimal text-white leading-6'>
                             <li>Find your desired photo & click on it to enlarge...</li>
                             <li>Click the DOWNLOAD button at the top of your screen...</li>
                             <li>When prompted, click VIEW from pop-up window.</li>
@@ -117,7 +110,7 @@ const Gallery = () => {
 
                     {/* IMAGES */}
                     <section>
-                        <div className="py-12 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 xl:gap-4 gap-2 mb-8">
+                        <div className="py-12 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 md:gap-4 gap-2 mb-8">
                             {gallery?.url?.map((item: any, i: number) => {
                                 return (
                                     <div className="w-full md:h-48 h-24 relative rounded-sm overflow-hidden cursor-pointer hover:scale-105 duration-200" key={i}>

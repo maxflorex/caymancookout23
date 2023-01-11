@@ -18,7 +18,7 @@ const LatestEvent = ({ setShow }: Props) => {
     return (
         <div>
 
-            <div className="grid xl:grid-cols-4 grid-cols-2 gap-4 container mx-auto min-h-[40vh] xl:h-96 h-48 relative xl:px-0 px-4">
+            <section className="grid xl:grid-cols-4 grid-cols-2 gap-4 container mx-auto min-h-[40vh] xl:h-96 h-48 relative xl:px-0 px-4">
 
                 {/* RIBBON */}
                 <span className='xl:text-xl text-sm absolute top-4 xl:-left-4 left-2 py-2 px-4 bg-mx-300 z-20 rounded font-bold shadow flex items-center gap-2'>Lastest Events <i className="ri-camera-2-fill"></i></span>
@@ -61,16 +61,17 @@ const LatestEvent = ({ setShow }: Props) => {
                         priority
                     />
                 </div>
-            </div>
+            </section>
 
-            <div className="flex flex-wrap xl:gap-6 gap-2 container items-center mx-auto xl:py-16 py-8 text-white xl:px-0 px-4">
-                <div className="flex gap-2 items-center">
+            {/* CALL TO ACTION */}
+            <section className="flex flex-wrap xl:gap-6 md:gap-4 gap-2 container items-center mx-auto xl:py-16 py-8 text-white xl:px-0 px-4 justify-center">
+                <span className="flex gap-2 items-center">
                     <i className="ri-play-fill text-2xl text-mx-400"></i>
-                    <h1 className='xl:text-3xl text-xl font-semibold'>Cayman Cookout 2023</h1>
-                </div>
-                <div className='flex-1 border-b-[1px] border-white border-opacity-30' />
-                <button onClick={handleClick} className='btn2'>View Photos <i className="ri-arrow-right-line" /></button>
-            </div>
+                    <h1 className='xl:text-2xl font-semibold'>Cayman Cookout 2023</h1>
+                </span>
+                <div className='flex-1 border-b-[1px] border-mx-400 border-opacity-10 hidden xl:block' />
+                <button onClick={handleClick} className='btn2 md:mb-0 mb-8'>View Photos <i className="ri-arrow-right-line" /></button>
+            </section>
 
         </div>
     )

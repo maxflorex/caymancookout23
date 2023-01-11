@@ -24,11 +24,15 @@ export default function Home() {
 					{!showCookoutPhotos ? (<div className='min-h-screen'>
 
 						<Navigation />
-						<div className="flex justify-center flex-col items-center py-20">
-							<h1 className='font-handwritten xl:text-8xl text-5xl text-mx-400'>Deep Blue Images</h1>
-							<h3 className='font-semibold text-mx-400 xl:text-xl text-opacity-30'>- Unique. Creative. Artistic. Personalized. -</h3>
+
+						{/* TITLE & SLOGAN */}
+						<div className="f3 md:py-20 py-16">
+							<h1 className='font-handwritten xl:text-8xl text-5xl text-mx-400 text-center'>Deep Blue Images</h1>
+							<h3 className='font-semibold text-mx-400 xl:text-xl text-opacity-30 text-center'>- Unique. Creative. Artistic. Personalized. -</h3>
 						</div>
+						
 						<LatestEvent setShow={setShowCookoutPhotos} />
+
 						<footer className='absolute bottom-0 w-full text-center py-4 text-xs'>Deep Blue Images  |  © 2023</footer>
 					</div>
 

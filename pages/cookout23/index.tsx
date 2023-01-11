@@ -17,7 +17,7 @@ export default function Cookout23() {
 
         e.preventDefault()
 
-        if (pw === 'Cookout2023') {
+        if (pw === 'chasemarriott') {
             router.push('/galleries')
         } else {
             alert('Wrong password! Try again')

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -14,22 +15,26 @@ const NotAuthorized = (props: Props) => {
             </Head>
 
 
-            <div className='bg-mx-400 min-h-screen text-white relative'>
+            <div className='bg-mx-400 min-h-screen text-white relative xl:px-0 px-4'>
 
                 <header className='container mx-auto'>
                     <nav className='flex items-center justify-between py-4 border-b-[1px] border-white border-opacity-10'>
                         <Link href='/' className='font-semibold'>Deep Blue Images</Link>
                         <div className="flex gap-2 items-center">
                             <button className='btn3'>Contact</button>
-                            <i className="ri-menu-4-line" />
                         </div>
                     </nav>
                 </header>
 
                 <main className='container mx-auto'>
                     <section className='flex flex-col justify-center items-center py-12 border-b border-white border-opacity-10'>
-                        <h1 className='text-mx-300 font-semibold text-2xl'>You&apos;re not authorized to view this page</h1>
-                        <Link href='/' className='pt-6 underline underline-offset-8'>Home</Link>
+                        <Image alt='Stop icon' src='/stop-icon.svg' width={80} height={80} className='pb-4' />
+                        <h1 className='text-mx-300 font-semibold text-2xl text-center'>You&apos;re not authorized to view this page</h1>
+                        <div className="flex gap-2 items-baseline">
+                            <Link href='/' className='pt-6 hover:underline underline-offset-8 transition-all duration-200'>Home</Link>
+                            <span> / </span>
+                            <Link href='/cookout23' className='pt-6 hover:underline underline-offset-8 transition-all duration-200'>Sign In</Link>
+                        </div>
                     </section>
                 </main>
 

@@ -30,11 +30,23 @@ html {
 }
 
 .btn2 {
-    @apply bg-mx-400 xl:px-5 px-4 xl:py-3 py-2 flex items-center gap-2 font-semibold  transition-all duration-300 rounded-full border border-mx-400 
+    @apply bg-mx-400 xl:px-5 px-4 xl:py-3 py-2 flex items-center gap-2 font-semibold duration-300 rounded-md border border-mx-400 text-sm
     hover:text-mx-400 hover:bg-transparent;
 }
 
 .btn3 {
     @apply px-2 py-1 border border-white border-opacity-10 text-white rounded-full transition-all duration-150 font-semibold text-sm
     hover:border-opacity-100;
+}
+
+.f1 {
+    @apply flex items-center justify-center
+}
+
+.f2 {
+    @apply flex items-start justify-start
+}
+
+.f3 {
+    @apply flex justify-center flex-col items-center
 }

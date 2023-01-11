@@ -26,18 +26,23 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
     return (
         <div className='fixed top-0 left-0 bg-mx-400 bg-opacity-90 backdrop-blur-sm w-full h-full z-30'>
-            <div className="flex items-center justify-center w-full h-full relative">
+            <div className="f1 w-full h-full relative">
 
-                {/* IMAGE NUMBERS */}
-                <p className='text-white font-bold text-sm absolute top-4 left-4'>{currentIndex + 1} / {length}</p>
+                {/* DOWNLOAD */}
+                <div className="absolute top-0 flex items-start justify-start w-full p-4">
+                    <a href={images[currentIndex]} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10'>
+                        <i className="ri-download-line"></i>
+                        Download
+                    </a>
+                </div>
 
                 {/* LARGE IMAGE */}
-                <div className="h-[70vh] w-[80vw] overflow-hidden relative">
+                <div className="h-[75vh] w-[85vw] relative">
                     <Image alt='Expanded Image' src={images[currentIndex]} fill className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 2000px) 50vw, 33vw" />
                 </div>
 
                 {/* CLOSE */}
-                <button className="absolute right-4 top-4 bg-white rounded leading-none p-2 z-30" onClick={exitModal}>
+                <button className="absolute right-4 top-4 bg-mx-400 rounded leading-none p-2 z-30 text-white border border-white flex items-center border-opacity-10" onClick={exitModal}>
                     <i className="ri-close-fill"></i>
                 </button>
 
@@ -53,40 +58,30 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 <div className="group/img group/arrow absolute h-full md:flex hidden items-center right-0" onClick={next}>
                     <div className="relative h-48 w-16 flex items-center z-10 cursor-pointer">
                         <i className="ri-arrow-right-line absolute h-48 w-16 flex items-center z-20 justify-center text-white group-hover/arrow:translate-x-2 duration-150" />
-                        <Image alt='Next Image' src={images[nextImg]} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                        <Image alt='Next Image' src={images[nextImg]} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority />
                     </div>
                 </div>
 
                 {/* ARROWS - MOBILE */}
-                <div className="absolute bottom-8 right-8 flex items-center justify-end w-full md:hidden">
-
+                <div className="absolute bottom-0 w-full flex gap-4 justify-end md:hidden p-4">
                     {/* LEFT - PREV */}
-                    <div className="flex" onClick={prev}>
-                        <i className="ri-arrow-left-line flex items-center z-20 justify-center text-white translate-x-8 duration-150" />
-                        <div className="relative rounded-full bg-mx-400 h-12 w-12 overflow-hidden">
-                            <Image alt='Next Image' src={images[prevImg]} fill className='object-cover z-10 opacity-50' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                        </div>
+                    <div className="f1 rounded-full relative" onClick={prev}>
+                        <i className="ri-arrow-left-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
+                        <Image alt='Next Image' src={images[prevImg]} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
 
                     {/* RIGHT - NEXT */}
-                    <div className="flex" onClick={next}>
-                        <i className="ri-arrow-right-line flex items-center z-20 justify-center text-white translate-x-8 duration-150" />
-                        <div className="relative rounded-full bg-mx-400 h-12 w-12 overflow-hidden">
-                            <Image alt='Next Image' src={images[nextImg]} fill className='object-cover z-10 opacity-50' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
-                        </div>
+                    <div className="f1 rounded-full relative" onClick={next}>
+                        <i className="ri-arrow-left-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
+                        <Image alt='Next Image' src={images[nextImg]} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
                 </div>
 
-                {/* DOWNLOAD */}
+                {/* IMAGE NUMBERS */}
+                <p className='text-white font-bold text-sm absolute bottom-4 left-4'>{currentIndex + 1} / {length}</p>
 
-                <div className="fixed md:bottom-4 bottom-8 md:left-0 left-8 w-full h-full">
-                    <div className="flex items-end md:justify-center justify-start w-full h-full">
-                        <a href={images[currentIndex]} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-100 hover:bg-mx-300 duration-200 flex items-center gap-2'>
-                            <i className="ri-download-line"></i>
-                            Download
-                        </a>
-                    </div>
-                </div>
+
+
 
             </div>
         </div>

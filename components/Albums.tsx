@@ -22,7 +22,7 @@ const Albums = () => {
 
                             {/* TITLE */}
                             <div className="flex flex-col xl:gap-2 items-baseline py-4">
-                                <div className="flex items-center justify-between w-full">
+                                <div className="flex items-center justify-between w-full flex-wrap gap-4">
                                     <div className="flex gap-2 items-center font-semibold">
                                         <p className='text-xs py-1 px-2 bg-mx-100 rounded-full text-mx-400 bg-opacity-20 group-hover/down:bg-mx-300 group-hover/down:bg-opacity-100'>Day {data.day}</p>
                                         <p className='text-xs'>{data.date}</p>
