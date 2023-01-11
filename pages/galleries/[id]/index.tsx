@@ -59,7 +59,7 @@ const Gallery = () => {
     }
 
     // DO NOT SHOW IF NOT AUTHORIZED
-    if (Authorization) {
+    if (!Authorization) {
         return <NotAuthorized />
     }
 
