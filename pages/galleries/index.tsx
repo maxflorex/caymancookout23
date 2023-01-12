@@ -44,11 +44,12 @@ const Galleries = () => {
 	// 	}
 	// }, [ctrl, inView]);
 
-	// if (Authorization) {
-	// 	return <NotAuthorized />
-	// }
-
+	
 	//  - - - - 
+	
+	if (!Authorization) {
+		return <NotAuthorized />
+	}
 
 	const handleDownload = () => {
 		return alert('Will get you a download link soon!')
