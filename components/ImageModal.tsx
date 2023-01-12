@@ -44,7 +44,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative">
-                    <Image alt='Expanded Image' src={images[currentIndex]} fill className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 2000px) 50vw, 33vw" />
+                    <Image alt='Expanded Image' src={images[currentIndex]} fill priority className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 1600px) 50vw, 33vw" />
                 </div>
 
                 {/* CLOSE */}

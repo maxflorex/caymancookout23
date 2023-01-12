@@ -59,7 +59,7 @@ const LatestEvent = ({ setShow }: Props) => {
                 </AnimatePresence>
 
                 {/* RIBBON */}
-                <span className='xl:text-xl text-sm absolute top-4 xl:-left-4 left-2 py-2 px-4 bg-mx-300 z-20 rounded font-bold shadow flex items-center gap-22'>Lastest Events <i className="ri-camera-2-fill"></i></span>
+                <span className='xl:text-xl text-sm absolute top-4 xl:-left-4 left-2 py-2 px-4 bg-mx-300 z-20 rounded font-bold shadow flex items-center gap-2'>Lastest Events <i className="ri-camera-2-fill"></i></span>
 
             </section>
 

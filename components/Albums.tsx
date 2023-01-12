@@ -20,14 +20,14 @@ const Albums = () => {
             variants={container}
             initial='hidden'
             animate='show'
-            className='grid md:grid-cols-2 gap-2 pt-8 pb-24'>
+            className='grid md:grid-cols-2 gap-4 pt-8 pb-24'>
             {testData.map((data: any, i: number) => {
                 return (
                     <motion.div
                         key={i}
                         variants={item}
                     >
-                        <div className="group/down border border-white border-opacity-10 rounded hover:border-opacity-100 xl:p-4 p-2 duration-500 h-full relative bg-transparent hover:bg-mx-100 hover:bg-opacity-5">
+                        <div className="group/down border border-white border-opacity-10 rounded hover:border-opacity-100 md:p-4 p-2 duration-500 h-full relative bg-transparent hover:bg-mx-100 hover:bg-opacity-5">
 
                             {/* TITLE */}
                             <div className="flex flex-col xl:gap-2 items-baseline py-4">
@@ -41,7 +41,7 @@ const Albums = () => {
                                         <i className="ri-folder-download-fill" />
                                     </div>
                                 </div>
-                                <h2 className='md:text-2xl text-xl underline-mx-300 md:leading-10 leading-0 md:pt-0 pt-4'>{data.title}</h2>
+                                <h2 className='md:text-2xl text-xl underline-mx-300 md:leading-10 leading-0 md:pt-2 pt-4'>{data.title}</h2>
                             </div>
 
                             {/* IMAGES */}
@@ -57,7 +57,7 @@ const Albums = () => {
                             </div>
 
                             {/* BUTTON */}
-                            <div className="border-t border-white border-opacity-10 w-full mt-8 absolute bottom-0 xl:-mx-4 -mx-2">
+                            <div className="border-t border-white border-opacity-10 w-full mt-8 absolute bottom-0 md:-mx-4 -mx-2">
                                 <Link href={`/galleries/${data.slug}`} className="flex items-center gap-2 justify-center py-4 hover:bg-mx-300 hover:text-mx-400 duration-300">
                                     <p className='text-center text-xs font-semibold'>View Album</p>
                                     <i className="ri-arrow-right-up-line"></i>
