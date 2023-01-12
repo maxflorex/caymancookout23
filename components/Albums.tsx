@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { testData } from '../pages/api/test'
+import { motion } from 'framer-motion'
+import { container, item } from '../animate/variations'
 
 
 const Albums = () => {
@@ -14,10 +16,17 @@ const Albums = () => {
 
 
     return (
-        <section className='grid md:grid-cols-2 gap-2 pt-8 pb-24'>
+        <motion.section
+            variants={container}
+            initial='hidden'
+            animate='show'
+            className='grid md:grid-cols-2 gap-2 pt-8 pb-24'>
             {testData.map((data: any, i: number) => {
                 return (
-                    <div key={i}>
+                    <motion.div
+                        key={i}
+                        variants={item}
+                    >
                         <div className="group/down border border-white border-opacity-10 rounded hover:border-opacity-100 xl:p-4 p-2 duration-500 h-full relative bg-transparent hover:bg-mx-100 hover:bg-opacity-5">
 
                             {/* TITLE */}
@@ -41,7 +50,7 @@ const Albums = () => {
                                     getSomeRandom(data.url, 4).map((url: any, i: number) => {
                                         return (
                                             <div className="xl:h-40 h-20 w-full rounded-sm overflow-hidden relative mb-16" key={i}>
-                                                <Image alt={data.title} src={url} fill className='object-cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                                                <Image alt='Cayman Cookout Thumbnails' src={url} fill className='object-cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                                             </div>
                                         )
                                     })}
@@ -56,10 +65,10 @@ const Albums = () => {
                             </div>
 
                         </div>
-                    </div>
+                    </motion.div>
                 )
             })}
-        </section>
+        </motion.section>
     )
 }
 

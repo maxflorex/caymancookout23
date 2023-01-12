@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Auth from '../components/AuthModal'
 import LatestEvent from '../components/LatestEvent'
 import Navigation from '../components/Navigation'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function Home() {
 
@@ -31,14 +31,15 @@ export default function Home() {
 						<Navigation />
 
 						{/* TITLE & SLOGAN */}
-						<div className="f3 md:py-20 py-16">
-							<motion.h1
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
-								className='font-handwritten xl:text-8xl text-5xl text-mx-400 text-center'>Deep Blue Images</motion.h1>
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{duration: 0.6, delay: 0.2}}
+							// transition={{ type: 'spring' }}
+							className="f3 md:py-20 py-16">
+							<h1 className='font-handwritten xl:text-8xl text-5xl text-mx-400 text-center'>Deep Blue Images</h1>
 							<h3 className='font-semibold text-mx-400 xl:text-xl text-opacity-30 text-center'>- Unique. Creative. Artistic. Personalized. -</h3>
-						</div>
+						</motion.div>
 
 						<LatestEvent setShow={setShowCookoutPhotos} />
 
@@ -47,7 +48,9 @@ export default function Home() {
 
 					) : (
 
-						<Auth setShow={setShowCookoutPhotos} />
+						<AnimatePresence>
+							<Auth setShow={setShowCookoutPhotos} />
+						</AnimatePresence>
 
 					)}
 

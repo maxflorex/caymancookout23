@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
+import { motion } from 'framer-motion'
+import { item } from '../animate/variations'
 
 type Props = {
     setExpand: any,
@@ -25,16 +27,20 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
 
     return (
-        <div className='fixed top-0 left-0 bg-mx-400 bg-opacity-90 backdrop-blur-sm w-full h-full z-30'>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, ease: 'easeIn', staggerChildren: 0.5 }}
+            className='fixed top-0 left-0 bg-mx-400 bg-opacity-90 backdrop-blur-sm w-full h-full z-30'>
             <div className="f1 w-full h-full relative">
 
                 {/* DOWNLOAD */}
-                <div className="absolute top-0 flex items-start justify-start w-full p-4">
+                <motion.div variants={item} className="absolute top-0 flex items-start justify-start w-full p-4">
                     <a href={images[currentIndex]} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10'>
                         <i className="ri-download-line"></i>
                         Download
                     </a>
-                </div>
+                </motion.div>
 
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative">
@@ -42,7 +48,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 </div>
 
                 {/* CLOSE */}
-                <button className="absolute right-4 top-4 bg-mx-400 rounded leading-none p-2 z-30 text-white border border-white flex items-center border-opacity-10" onClick={exitModal}>
+                <button className="absolute right-4 top-4 bg-mx-400 hover:bg-mx-300 hover:text-mx-400 rounded leading-none p-2 z-30 text-white border border-white flex items-center border-opacity-10 duration-150" onClick={exitModal}>
                     <i className="ri-close-fill"></i>
                 </button>
 
@@ -84,7 +90,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
 
             </div>
-        </div>
+        </motion.div>
     )
 }
 

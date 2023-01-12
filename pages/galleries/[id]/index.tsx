@@ -7,6 +7,8 @@ import { testData } from '../../api/test'
 import ImageModal from '../../../components/ImageModal'
 import NotAuthorized from '../../../components/NotAuthorized'
 import { useSelector } from 'react-redux'
+import { AnimatePresence, motion } from 'framer-motion'
+import { container, item } from '../../../animate/variations'
 
 const Gallery = () => {
     const [expand, setExpand] = useState(false)
@@ -19,7 +21,7 @@ const Gallery = () => {
         if (item.slug === id) {
             return item
         } else {
-            return false
+            return null
         }
     })
 
@@ -59,7 +61,7 @@ const Gallery = () => {
     }
 
     // DO NOT SHOW IF NOT AUTHORIZED
-    if (!Authorization) {
+    if (Authorization) {
         return <NotAuthorized />
     }
 
@@ -68,9 +70,9 @@ const Gallery = () => {
         <>
             <Head>
                 <title>Deep Blue Images - {gallery?.title}</title>
-				<meta name="description" content="Cayman Cookout 2023 | Photos by Deep Blue Images" />
-				<meta name='keywords' content='grand cayman photography, wedding photography grand cayman, photoshoots in grand cayman, diving photography grand cayman' />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="description" content="Cayman Cookout 2023 | Photos by Deep Blue Images" />
+                <meta name='keywords' content='grand cayman photography, wedding photography grand cayman, photoshoots in grand cayman, diving photography grand cayman' />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
             <div className='bg-mx-400 min-h-screen text-white relative xl:px-0 px-4 overflow-hidden'>
@@ -112,17 +114,23 @@ const Gallery = () => {
                     {/* IMAGES */}
                     <section>
                         <div className="py-12 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 md:gap-4 gap-2 mb-8">
-                            {gallery?.url?.map((item: any, i: number) => {
+                            {gallery?.url?.map((image: any, i: number) => {
                                 return (
-                                    <div className="w-full md:h-48 h-24 relative rounded-sm overflow-hidden cursor-pointer hover:scale-105 duration-200" key={i}>
+                                    <motion.div
+                                        key={i}
+                                        initial={{ scale: 1.1, opacity: 0, }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.2, ease: 'easeOut', delay: 0.2 * i }}
+                                        className="w-full md:h-48 h-24 relative rounded-sm overflow-hidden cursor-pointer hover:scale-105 duration-200"
+                                    >
                                         <Image
                                             alt='Image thumbnail'
-                                            src={item} fill
+                                            src={image} fill
                                             className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110'
                                             onClick={() => handleClick(i)}
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         />
-                                    </div>
+                                    </motion.div>
                                 )
                             })}
                         </div>
@@ -133,14 +141,16 @@ const Gallery = () => {
             </div>
 
             {/* MODAL */}
-            {expand && (
-                <ImageModal
-                    setExpand={setExpand}
-                    next={nextImage}
-                    prev={prevImage}
-                    images={images}
-                    currentIndex={currentIndex}
-                />)}
+            <AnimatePresence>
+                {expand && (
+                    <ImageModal
+                        setExpand={setExpand}
+                        next={nextImage}
+                        prev={prevImage}
+                        images={images}
+                        currentIndex={currentIndex}
+                    />)}
+            </AnimatePresence>
         </>
     )
 }

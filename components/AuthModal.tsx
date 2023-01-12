@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { isAuth } from '../redux/isAuthSlice'
+import { motion } from 'framer-motion'
 
 type Props = {
 	setShow: any
@@ -40,7 +41,11 @@ const Auth = ({ setShow }: Props) => {
 				<Link href='/' className='text-3xl font-handwritten text-mx-400 text-center pt-4 z-20 w-full flex justify-center absolute top-0 left-0' onClick={closeAuth}>Deep Blue Images</Link>
 
 				{/* FORM */}
-				<form className="p-8 rounded-md bg-mx-200 bg-opacity-80 flex flex-col gap-4 items-center relative"
+				<motion.form
+					initial={{ translateY: 100, opacity: 0 }}
+					animate={{ translateY: 0, opacity: 1 }}
+					transition={{ duration: 0.4, ease: 'anticipate' }}
+					className="p-8 rounded-md bg-mx-200 bg-opacity-80 flex flex-col gap-4 items-center relative"
 					onSubmit={handleSubmit}
 				>
 					<Image alt='Cayman Cookout Logo' src='/images/cc23logo.webp' width={168} height={65} />
@@ -60,7 +65,7 @@ const Auth = ({ setShow }: Props) => {
 							<i className="ri-close-fill"></i>
 						</button>
 					</div>
-				</form>
+				</motion.form>
 			</div>
 
 			<footer className='w-full flex items-center justify-center absolute bottom-4 gap-4 text-mx-400 z-20'>
