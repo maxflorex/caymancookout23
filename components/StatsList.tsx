@@ -11,8 +11,17 @@ const StatsList = (props: Props) => {
       variants={pushDown}
       initial='hidden'
       animate='show'
-      transition={{ duration: 0.5 }}
-      className='bg-mx-100 p-4 rounded-md'>StatsList</motion.div>
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }}
+      className='bg-mx-100 p-8 rounded-md'>
+        <div>
+          <h1 className='font-semibold text-2xl'>Stats</h1>
+          <p>Coming soon!</p>
+        </div>
+      </motion.div>
   )
 }
 

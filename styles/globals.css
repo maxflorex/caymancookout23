@@ -56,5 +56,14 @@ html {
 }
 
 .btn-logout {
-    @apply absolute top-0 right-0 py-2 px-4 bg-mx-100 m-2 rounded-md hover:bg-mx-400 drop-shadow-sm hover:text-white duration-300 focus:scale-95;
+    @apply absolute top-0 right-0 py-2 px-4 bg-mx-100 m-2 rounded-md hover:bg-mx-400 drop-shadow-sm hover:text-white duration-300 focus:scale-95 border-2 border-mx-300;
+}
+
+.input, #date {
+    @apply border-2 border-mx-200 rounded-md p-2 outline-none
+    focus:border-mx-300
+}
+
+label {
+    @apply text-sm ml-2
 }
