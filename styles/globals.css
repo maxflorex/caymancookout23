@@ -47,9 +47,14 @@ html {
     @apply flex items-start justify-start;
 }
 
-.f3 {
-    @apply flex justify-center flex-col items-center;
-}
 .texture {
     background-image: url('https://www.transparenttextures.com/patterns/graphy.png');
+}
+
+.nav-icons {
+    @apply flex items-center gap-2 py-2 px-4 rounded-md hover:translate-x-2 duration-300 hover:bg-mx-200 cursor-pointer active:scale-95;
+}
+
+.btn-logout {
+    @apply absolute top-0 right-0 py-2 px-4 bg-mx-100 m-2 rounded-md hover:bg-mx-400 drop-shadow-sm hover:text-white duration-300 focus:scale-95;
 }
