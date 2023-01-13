@@ -1,8 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-
 import { Syne, Ms_Madi } from '@next/font/google'
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import store from '../redux/store'
 
 const spaceGrotesk = Syne({
@@ -16,7 +15,9 @@ const msMadi = Ms_Madi({
 	variable: '--font-msmadi'
 })
 
+
 export default function App({ Component, pageProps }: AppProps) {
+
 	return (
 		<Provider store={store}>
 			<main className={`${spaceGrotesk.variable} font-sans ${msMadi.variable}`}>

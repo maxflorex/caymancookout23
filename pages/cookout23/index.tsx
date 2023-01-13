@@ -29,7 +29,7 @@ export default function Cookout23() {
 
     const closeAuth = (e: any) => {
         e.preventDefault()
-        router.push('/')
+        router.push('/admin')
     }
 
     return (
