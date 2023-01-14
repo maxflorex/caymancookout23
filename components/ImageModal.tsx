@@ -25,6 +25,9 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
     const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
 
+    console.log(images[currentIndex].url);
+    
+
 
     return (
         <motion.div
@@ -36,7 +39,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* DOWNLOAD */}
                 <motion.div variants={item} className="absolute top-0 flex items-start justify-start w-full p-4">
-                    <a href={images[currentIndex]} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10'>
+                    <a href={images[currentIndex].url} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10'>
                         <i className="ri-download-line"></i>
                         Download
                     </a>
@@ -44,7 +47,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative">
-                    <Image alt='Expanded Image' src={`https://res.cloudinary.com/dbi/image/upload/q_50/${images[currentIndex].public_id}.webp`} fill priority className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 1600px) 50vw, 33vw" />
+                    <Image alt='Expanded Image' src={`https://res.cloudinary.com/dbi/image/upload/c_scale,dpr_auto,q_54,w_1200/${images[currentIndex].public_id}.webp`} fill priority className='object-contain' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                 </div>
 
                 {/* CLOSE */}
@@ -64,7 +67,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 <div className="group/img group/arrow absolute h-full md:flex hidden items-center right-0" onClick={next}>
                     <div className="relative h-48 w-16 flex items-center z-10 cursor-pointer">
                         <i className="ri-arrow-right-line absolute h-48 w-16 flex items-center z-20 justify-center text-white group-hover/arrow:translate-x-2 duration-150" />
-                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${images[nextImg].public_id}`} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority />
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${images[nextImg].public_id}`} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     </div>
                 </div>
 
