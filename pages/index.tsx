@@ -4,10 +4,31 @@ import Auth from '../components/AuthModal'
 import LatestEvent from '../components/LatestEvent'
 import Navigation from '../components/Navigation'
 import { AnimatePresence, motion } from 'framer-motion'
+import { GetStaticProps } from 'next'
 
-export default function Home() {
+export const getStaticProps: GetStaticProps = async () => {
+	const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image/`, {
+		method: 'get',
+
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+		}
+	}).then((r) => r.json()).catch(err => console.log(err))
+
+	return {
+		props: {
+			results,
+		},
+	}
+}
+
+
+export default function Home({ results }: any) {
 
 	const [showCookoutPhotos, setShowCookoutPhotos] = useState(false)
+
+	console.log(results);
+
 
 	return (
 		<>
@@ -34,7 +55,7 @@ export default function Home() {
 						<motion.div
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
-							transition={{duration: 0.6, delay: 0.2}}
+							transition={{ duration: 0.6, delay: 0.2 }}
 							// transition={{ type: 'spring' }}
 							className="f3 md:py-20 py-16">
 							<h1 className='font-handwritten xl:text-8xl text-5xl text-mx-400 text-center'>Deep Blue Images</h1>

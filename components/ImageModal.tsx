@@ -78,7 +78,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                     {/* RIGHT - NEXT */}
                     <div className="f1 rounded-full relative" onClick={next}>
-                        <i className="ri-arrow-left-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
+                        <i className="ri-arrow-right-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
                         <Image alt='Next Image' src={images[nextImg]} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
                 </div>

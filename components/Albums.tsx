@@ -45,7 +45,7 @@ const Albums = () => {
                             </div>
 
                             {/* IMAGES */}
-                            <div className="grid grid-cols-4 gap-2">
+                            {/* <div className="grid grid-cols-4 gap-2">
                                 {
                                     getSomeRandom(data.url, 4).map((url: any, i: number) => {
                                         return (
@@ -54,6 +54,10 @@ const Albums = () => {
                                             </div>
                                         )
                                     })}
+                            </div> */}
+
+                            <div className="pt-2 pb-20 md:px-4 px-2">
+                                <h3 className='font-bold underline underline-offset-8'>* Coming soon!</h3>
                             </div>
 
                             {/* BUTTON */}
