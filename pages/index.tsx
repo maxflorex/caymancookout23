@@ -5,11 +5,12 @@ import LatestEvent from '../components/LatestEvent'
 import Navigation from '../components/Navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
+import { useFilter } from './hooks/useFilter'
+
 
 export const getStaticProps: GetStaticProps = async () => {
-	const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image/`, {
+	const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
 		method: 'get',
-
 		headers: {
 			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
 		}
@@ -26,8 +27,12 @@ export const getStaticProps: GetStaticProps = async () => {
 export default function Home({ results }: any) {
 
 	const [showCookoutPhotos, setShowCookoutPhotos] = useState(false)
+	const album1 = useFilter(results, 'day1-sommelier-standoffjan')
 
-	console.log(results);
+
+
+	console.log(album1[0].url);
+
 
 
 	return (
@@ -75,6 +80,9 @@ export default function Home({ results }: any) {
 
 					)}
 
+				</div>
+				<div>
+					{/* <CldImage /> */}
 				</div>
 			</main>
 
