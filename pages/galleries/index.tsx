@@ -1,13 +1,46 @@
 import { useAnimation, useInView, motion } from 'framer-motion'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import AlbumList from '../../components/AlbumList'
 import Albums from '../../components/Albums'
 import NotAuthorized from '../../components/NotAuthorized'
 
-const Galleries = () => {
+export const getStaticProps: GetStaticProps = async () => {
+	const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
+		method: 'get',
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+		}
+	}).then((r) => r.json()).catch(err => console.log(err))
+
+	const albums = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/folders/cookout23/`, {
+		method: 'get',
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+		}
+	}).then((r) => r.json()).catch(err => console.log(err))
+
+	return {
+		props: {
+			results,
+			albums
+		},
+	}
+}
+
+const Galleries = ({ results, albums }: any) => {
 	const Authorization: unknown = useSelector((state: any) => state.authorization.value)
+	const [cookoutAlbums, setCookoutAlbums] = useState([])
+
+	const albumList = albums.folders.map((data: any) => {
+		return {
+			name: data.name,
+			nameClean: data.name.slice(5).replaceAll('-', ' ')
+		}
+	})
 
 	// ANIMATE TEXT
 	// const ref = useRef(null)
@@ -44,10 +77,10 @@ const Galleries = () => {
 	// 	}
 	// }, [ctrl, inView]);
 
-	
+
 	//  - - - - 
-	
-	if (!Authorization) {
+
+	if (Authorization) {
 		return <NotAuthorized />
 	}
 
@@ -133,7 +166,7 @@ const Galleries = () => {
 					</section>
 
 					{/* ALBUMS */}
-					<Albums />
+					<Albums results={results} albumsList={albumList} />
 				</main>
 
 				<footer className='absolute bottom-0 w-full text-center py-4 text-xs'>Deep Blue Images  |  © 2023</footer>
