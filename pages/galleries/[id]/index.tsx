@@ -9,25 +9,62 @@ import NotAuthorized from '../../../components/NotAuthorized'
 import { useSelector } from 'react-redux'
 import { AnimatePresence, motion } from 'framer-motion'
 import { container, item } from '../../../animate/variations'
+import { GetStaticProps } from 'next'
+import { useFilter } from '../../../hooks/useFilter'
 
-const Gallery = () => {
+export const getStaticPaths = async () => {
+
+    const albums = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/folders/cookout23/`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
+
+    const paths = albums.folders.map((item: any) => {
+        return {
+            params: {
+                id: item.name.substring(5)
+            }
+        }
+    })
+
+    return {
+        paths,
+        fallback: false,
+    };
+
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+    const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
+
+    return {
+        props: {
+            results
+        },
+    }
+}
+
+
+const Gallery = ({ results }: any) => {
     const [expand, setExpand] = useState(false)
     const router = useRouter()
     const { id } = router.query
     const [currentIndex, setCurrentIndex] = useState(0)
     const Authorization: unknown = useSelector((state: any) => state.authorization.value)
 
-    const gallery = testData.find(item => {
-        if (item.slug === id) {
-            return item
-        } else {
-            return null
-        }
-    })
+    const filtered = useFilter(results, id)
 
     // DEFAULT VALUES
-    let images = gallery?.url || []
-    let l = gallery?.url?.length || 0
+    let images = filtered
+    let l = filtered.length || 0
+    const day = filtered[0].folder.slice(13, 14)
 
     // NEXT
     const nextImage = (e: any) => {
@@ -61,7 +98,7 @@ const Gallery = () => {
     }
 
     // DO NOT SHOW IF NOT AUTHORIZED
-    if (Authorization) {
+    if (!Authorization) {
         return <NotAuthorized />
     }
 
@@ -69,7 +106,7 @@ const Gallery = () => {
     return (
         <>
             <Head>
-                <title>Deep Blue Images - {gallery?.title}</title>
+                <title>Deep Blue Images - Album</title>
                 <meta name="description" content="Cayman Cookout 2023 | Photos by Deep Blue Images" />
                 <meta name='keywords' content='grand cayman photography, wedding photography grand cayman, photoshoots in grand cayman, diving photography grand cayman' />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -94,8 +131,8 @@ const Gallery = () => {
                         <div className="flex flex-col gap-2">
                             <p className='font-handwritten text-2xl text-mx-300'>Cayman Cookout 2023</p>
                             <div className="flex xl:flex-row flex-col items-baseline xl:gap-2 xl:py-0 py-4">
-                                <p>Day {gallery?.day}</p>
-                                <h1 className='text-4xl font-bold'>{gallery?.title}</h1>
+                                <p>Day {day}</p>
+                                <h1 className='text-4xl font-bold capitalize'>{id?.toString().replaceAll('-', ' ')}</h1>
                             </div>
                         </div>
                         <Link href='/galleries' className='xl:text-md text-sm group/arrow py-2 px-4 z-20 rounded font-bold bg-white text-mx-400 flex items-center gap-2'><i className="ri-arrow-left-line group-hover/arrow:-translate-x-1 duration-200"></i>View Albums</Link>
@@ -114,8 +151,13 @@ const Gallery = () => {
                     {/* IMAGES */}
                     <section>
                         <div className="py-12 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 md:gap-4 gap-2 mb-8">
-                            {gallery?.url?.map((image: any, i: number) => {
+                            {images.map((image: any, i: number) => {
+
+                                // console.log(image.public_id)
+                                // return null
                                 return (
+
+
                                     <motion.div
                                         key={i}
                                         initial={{ scale: 1.1, opacity: 0, }}
@@ -125,7 +167,7 @@ const Gallery = () => {
                                     >
                                         <Image
                                             alt='Image thumbnail'
-                                            src={image} fill
+                                            src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${image.public_id}`} fill
                                             className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110'
                                             onClick={() => handleClick(i)}
                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

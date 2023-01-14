@@ -50,10 +50,10 @@ const Albums = ({ results, albumsList }: Props) => {
                                         {/* <p className='text-xs py-1 px-2 bg-mx-100 rounded-full text-mx-400 bg-opacity-20 group-hover/down:bg-mx-300 group-hover/down:bg-opacity-100'>Day {data.day}</p> */}
                                         <p className='text-xs'>Day {day}</p>
                                     </div>
-                                    <div className="gap-2 items-center group-hover/down:flex hidden duration-150 hover:text-mx-300">
+                                    {/* <div className="gap-2 items-center group-hover/down:flex hidden duration-150 hover:text-mx-300">
                                         <a href='#' className='text-xs font-semibold underline underline-offset-8'>Dowload Album</a>
                                         <i className="ri-folder-download-fill" />
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <h2 className='md:text-2xl text-xl underline-mx-300 md:leading-10 leading-0 md:pt-2 pt-4 capitalize'>{nameClean}</h2>
                             </div>

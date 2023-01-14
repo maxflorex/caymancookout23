@@ -44,7 +44,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative">
-                    <Image alt='Expanded Image' src={images[currentIndex]} fill priority className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 1600px) 50vw, 33vw" />
+                    <Image alt='Expanded Image' src={`https://res.cloudinary.com/dbi/image/upload/q_50/${images[currentIndex].public_id}.webp`} fill priority className='object-contain' sizes="(max-width: 2000px) 100vw, (max-width: 1600px) 50vw, 33vw" />
                 </div>
 
                 {/* CLOSE */}
@@ -56,7 +56,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 <div className="group/img group/arrow absolute h-full md:flex hidden items-center left-0" onClick={prev}>
                     <div className="relative h-48 w-16 flex items-center z-10 cursor-pointer">
                         <i className="ri-arrow-left-line absolute h-48 w-16 flex items-center z-20 justify-center text-white group-hover/arrow:-translate-x-2 duration-150" />
-                        <Image alt='Next Image' src={images[prevImg]} fill className='object-cover object-right opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${images[prevImg].public_id}`} fill className='object-cover object-right opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 <div className="group/img group/arrow absolute h-full md:flex hidden items-center right-0" onClick={next}>
                     <div className="relative h-48 w-16 flex items-center z-10 cursor-pointer">
                         <i className="ri-arrow-right-line absolute h-48 w-16 flex items-center z-20 justify-center text-white group-hover/arrow:translate-x-2 duration-150" />
-                        <Image alt='Next Image' src={images[nextImg]} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority />
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${images[nextImg].public_id}`} fill className='object-cover object-left opacity-40 group-hover/img:opacity-60 duration-300' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority />
                     </div>
                 </div>
 
@@ -73,13 +73,13 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                     {/* LEFT - PREV */}
                     <div className="f1 rounded-full relative" onClick={prev}>
                         <i className="ri-arrow-left-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
-                        <Image alt='Next Image' src={images[prevImg]} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${images[prevImg].public_id}`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
 
                     {/* RIGHT - NEXT */}
                     <div className="f1 rounded-full relative" onClick={next}>
                         <i className="ri-arrow-right-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
-                        <Image alt='Next Image' src={images[nextImg]} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${images[nextImg].public_id}`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
                 </div>
 

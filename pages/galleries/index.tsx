@@ -1,10 +1,8 @@
-import { useAnimation, useInView, motion } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import AlbumList from '../../components/AlbumList'
 import Albums from '../../components/Albums'
 import NotAuthorized from '../../components/NotAuthorized'
 
@@ -40,7 +38,7 @@ const Galleries = ({ results, albums }: any) => {
 			name: data.name,
 			nameClean: data.name.slice(5).replaceAll('-', ' ')
 		}
-	})
+	})	
 
 	// ANIMATE TEXT
 	// const ref = useRef(null)
@@ -80,7 +78,7 @@ const Galleries = ({ results, albums }: any) => {
 
 	//  - - - - 
 
-	if (Authorization) {
+	if (!Authorization) {
 		return <NotAuthorized />
 	}
 
