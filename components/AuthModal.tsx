@@ -16,15 +16,12 @@ const Auth = ({ setShow }: Props) => {
 	const [pw, setPw] = useState('')
 
 	const handleSubmit = (e: any) => {
-
 		e.preventDefault()
-
 		if (pw === 'chasemarriott') {
 			router.push('/galleries')
 		} else {
 			alert('Wrong password! Try again')
 		}
-
 		dispatch(isAuth(true))
 	}
 

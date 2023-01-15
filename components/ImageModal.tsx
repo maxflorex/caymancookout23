@@ -47,7 +47,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative">
-                    <Image alt='Expanded Image' src={`https://res.cloudinary.com/dbi/image/upload/${images[currentIndex].public_id}`} fill priority className='object-contain' sizes="(max-width: 1200px) 100vw, (max-width: 2400px) 50vw, 33vw" placeholder='blur' blurDataURL={`https://res.cloudinary.com/dbi/image/upload/c_scale,dn_17250,dpr_auto,e_blur:100,h_320,q_auto:eco/${images[currentIndex].public_id}`} />
+                    <Image alt='Expanded Image' src={`https://res.cloudinary.com/dbi/image/upload/${images[currentIndex].public_id}`} fill priority className='object-contain' sizes="(max-width: 1200px) 100vw, (max-width: 2400px) 50vw, 33vw" placeholder='blur' blurDataURL={`/_next/image?url=${images[currentIndex].url}&w=16&q=1`} />
                 </div>
 
                 {/* CLOSE */}
