@@ -37,7 +37,17 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+
     const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
+
+    const next = results.next_cursor
+
+    const results2 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next}`, {
         method: 'get',
         headers: {
             Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
@@ -46,25 +56,36 @@ export const getStaticProps: GetStaticProps = async () => {
 
     return {
         props: {
-            results
+            results,
+            results2,
         },
     }
 }
 
 
-const Gallery = ({ results }: any) => {
+const Gallery = ({ results, results2, r }: any) => {
     const [expand, setExpand] = useState(false)
     const router = useRouter()
     const { id } = router.query
     const [currentIndex, setCurrentIndex] = useState(0)
     const Authorization: unknown = useSelector((state: any) => state.authorization.value)
 
-    const filtered = useFilter(results, id)
+    const filter1 = useFilter(results, id)
+    const filter2 = useFilter(results2, id)
+
+    // const filtered: any = []
+
+    const filtered = [...filter1, ...filter2]
+
+    // console.log(yt);
+
+
+
 
     // DEFAULT VALUES
     let images = filtered
     let l = filtered.length || 0
-    const day = filtered[0].folder.slice(13, 14)
+    const day = filtered[0]?.folder.slice(13, 14)
 
     // NEXT
     const nextImage = (e: any) => {
@@ -98,7 +119,7 @@ const Gallery = ({ results }: any) => {
     }
 
     // DO NOT SHOW IF NOT AUTHORIZED
-    if (!Authorization) {
+    if (Authorization) {
         return <NotAuthorized />
     }
 

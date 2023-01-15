@@ -1,18 +1,28 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Albums from '../../components/Albums'
 import NotAuthorized from '../../components/NotAuthorized'
 
 export const getStaticProps: GetStaticProps = async () => {
-	const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
-		method: 'get',
-		headers: {
-			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
-		}
-	}).then((r) => r.json()).catch(err => console.log(err))
+
+
+    const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
+
+    const next = results.next_cursor
+
+    const results2 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next}`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
 
 	const albums = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/folders/cookout23/`, {
 		method: 'get',
@@ -24,14 +34,17 @@ export const getStaticProps: GetStaticProps = async () => {
 	return {
 		props: {
 			results,
+			results2,
 			albums
 		},
 	}
 }
 
-const Galleries = ({ results, albums }: any) => {
+const Galleries = ({ results, results2, albums }: any) => {
 	const Authorization: unknown = useSelector((state: any) => state.authorization.value)
-	const [cookoutAlbums, setCookoutAlbums] = useState([])
+
+	console.log(results2);
+	
 
 	const albumList = albums.folders.map((data: any) => {
 		return {
@@ -78,7 +91,7 @@ const Galleries = ({ results, albums }: any) => {
 
 	//  - - - - 
 
-	if (!Authorization) {
+	if (Authorization) {
 		return <NotAuthorized />
 	}
 
@@ -164,7 +177,7 @@ const Galleries = ({ results, albums }: any) => {
 					</section>
 
 					{/* ALBUMS */}
-					<Albums results={results} albumsList={albumList} />
+					<Albums results={results} results2={results2} albumsList={albumList} />
 				</main>
 
 				<footer className='absolute bottom-0 w-full text-center py-4 text-xs'>Deep Blue Images  |  © 2023</footer>

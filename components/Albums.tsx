@@ -8,14 +8,15 @@ import { useFilter } from '../hooks/useFilter'
 
 interface Props {
     results: any,
+    results2: any,
     albumsList: any
 }
 
 
-const Albums = ({ results, albumsList }: Props) => {
+const Albums = ({ results, results2,  albumsList }: Props) => {   
 
-    // RANDOMIZE THUMBNAILS
-    const album1 = useFilter(results, 'day1-sommelier-standoffjan')
+    const allResults = [...results.resources, ...results2.resources]    
+
 
     return (
         <motion.section
@@ -24,11 +25,12 @@ const Albums = ({ results, albumsList }: Props) => {
             animate='show'
             className='grid md:grid-cols-2 gap-4 pt-8 pb-24'>
             {albumsList.map(({ name, nameClean }: any, i: number) => {
+
                 // GET DAY NUMBER
                 const day = name.substring(3, 4)
 
                 // FIND IMAGES IN THE ALBUM
-                const albumImages = [...results.resources].filter((element: any) => {
+                const albumImages = [...allResults].filter((element: any) => {
                     return element.folder === `cookout23/${name}`
                 })
 
@@ -61,7 +63,7 @@ const Albums = ({ results, albumsList }: Props) => {
                             {/* IMAGES */}
                             <div className="grid grid-cols-4 gap-2">
                                 {
-                                    albumImages.slice(10, 14).map((url: any, i: number) => {
+                                    albumImages.slice(0, 4).map((url: any, i: number) => {
                                         return (
                                             <div className="xl:h-40 h-20 w-full rounded-sm overflow-hidden relative mb-16" key={i}>
                                                 <Image alt='Cayman Cookout Thumbnails' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${url.public_id}`} fill className='object-cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
