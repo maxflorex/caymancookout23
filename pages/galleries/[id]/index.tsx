@@ -119,7 +119,7 @@ const Gallery = ({ results, results2, r }: any) => {
     }
 
     // DO NOT SHOW IF NOT AUTHORIZED
-    if (Authorization) {
+    if (!Authorization) {
         return <NotAuthorized />
     }
 
