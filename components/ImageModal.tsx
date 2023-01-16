@@ -25,10 +25,6 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
     const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
 
-    console.log(images[currentIndex].url);
-
-
-
     return (
         <motion.div
             initial={{ opacity: 0 }}

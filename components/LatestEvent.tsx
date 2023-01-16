@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import React from 'react'
+import Link from 'next/link'
 
 type Props = {
     setShow: any
@@ -16,9 +17,9 @@ const LatestEvent = ({ setShow }: Props) => {
     }
 
     const latestImages = [
-        '/images/cc7.jpg',
-        '/images/cc13.jpg',
-        '/images/cc17.png'
+        '/images/ccdbi1.jpg',
+        '/images/ccdbi2.jpg',
+        '/images/ccdbi3.jpg'
     ]
 
     return (
@@ -50,8 +51,7 @@ const LatestEvent = ({ setShow }: Props) => {
                                 className='object-cover object-center'
                                 priority
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            // placeholder='blur'
-                            // blurDataURL={`/_next/image?url=/images/samplecc23.jpg&w=16&q=1`}
+                                placeholder='blur' blurDataURL={`/_next/image?url=${image}&w=16&q=1`}
                             />
                         </motion.div>
 
@@ -69,10 +69,10 @@ const LatestEvent = ({ setShow }: Props) => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, ease: 'easeIn', delay: 1 }}
                 className="flex md:flex-row flex-col flex-wrap xl:gap-6 md:gap-4 gap-2 container items-center mx-auto xl:py-16 py-8 text-white xl:px-0 px-4 justify-center">
-                <span className="flex gap-2 items-center">
+                <Link href='/cookout23' className="flex gap-2 items-center">
                     <i className="ri-play-fill text-2xl text-mx-400"></i>
                     <h1 className='xl:text-2xl font-semibold'>Cayman Cookout 2023</h1>
-                </span>
+                </Link>
                 <div className='flex-1 border-b-[1px] border-mx-400 border-opacity-10 hidden xl:block' />
                 <button onClick={handleClick} className='btn2 md:mb-0 mb-8'>View Photos <i className="ri-arrow-right-line" /></button>
             </motion.section>

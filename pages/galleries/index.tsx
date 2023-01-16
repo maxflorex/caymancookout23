@@ -41,10 +41,7 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Galleries = ({ results, results2, albums }: any) => {
-	const Authorization: unknown = useSelector((state: any) => state.authorization.value)
-
-	console.log(results2);
-	
+	const Authorization: unknown = useSelector((state: any) => state.authorization.value)	
 
 	const albumList = albums.folders.map((data: any) => {
 		return {

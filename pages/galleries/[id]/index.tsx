@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { testData } from '../../api/test'
 import ImageModal from '../../../components/ImageModal'
 import NotAuthorized from '../../../components/NotAuthorized'
 import { useSelector } from 'react-redux'
@@ -63,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 
-const Gallery = ({ results, results2, r }: any) => {
+const Gallery = ({ results, results2}: any) => {
     const [expand, setExpand] = useState(false)
     const router = useRouter()
     const { id } = router.query
@@ -73,21 +72,14 @@ const Gallery = ({ results, results2, r }: any) => {
     const filter1 = useFilter(results, id)
     const filter2 = useFilter(results2, id)
 
-    // const filtered: any = []
-
     const filtered = [...filter1, ...filter2]
 
-    // console.log(yt);
-
-
-
-
-    // DEFAULT VALUES
+    // * DEFAULT VALUES
     let images = filtered
     let l = filtered.length || 0
     const day = filtered[0]?.folder.slice(13, 14)
 
-    // NEXT
+    // * NEXT
     const nextImage = (e: any) => {
         e.preventDefault()
 
@@ -173,12 +165,7 @@ const Gallery = ({ results, results2, r }: any) => {
                     <section>
                         <div className="py-12 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 md:gap-4 gap-2 mb-8">
                             {images.map((image: any, i: number) => {
-
-                                // console.log(image.public_id)
-                                // return null
                                 return (
-
-
                                     <motion.div
                                         key={i}
                                         initial={{ scale: 1.1, opacity: 0, }}
@@ -188,10 +175,11 @@ const Gallery = ({ results, results2, r }: any) => {
                                     >
                                         <Image
                                             alt='Image thumbnail'
-                                            src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${image.public_id}`} fill
+                                            src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_240,w_320,q_40/${image.public_id}.webp`} fill
                                             className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110'
                                             onClick={() => handleClick(i)}
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            sizes="(max-width: 480px) 100vw, (max-width:960px) 50vw, 33vw"
+                                            placeholder='blur' blurDataURL={`/_next/image?url=${image.public_id}&w=16&q=1`}
                                         />
                                     </motion.div>
                                 )

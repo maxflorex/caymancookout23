@@ -3,14 +3,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { pushDown } from '../animate/variations'
 
-
-type Props = {}
-
-const EditProfile = (props: Props) => {
-    const admin = useSelector((state: any) => state.administrator.value.user)
-
-    console.log(admin);
-    
+const EditProfile = () => {
+    const admin = useSelector((state: any) => state.administrator.value.user)   
 
     return (
         <motion.div

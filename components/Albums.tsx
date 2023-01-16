@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { testData } from '../pages/api/test'
 import { motion } from 'framer-motion'
 import { container, item } from '../animate/variations'
 import { useFilter } from '../hooks/useFilter'
@@ -13,9 +12,9 @@ interface Props {
 }
 
 
-const Albums = ({ results, results2,  albumsList }: Props) => {   
+const Albums = ({ results, results2, albumsList }: Props) => {
 
-    const allResults = [...results.resources, ...results2.resources]    
+    const allResults = [...results.resources, ...results2.resources]
 
 
     return (
@@ -49,13 +48,8 @@ const Albums = ({ results, results2,  albumsList }: Props) => {
                             <div className="flex flex-col xl:gap-2 items-baseline py-4">
                                 <div className="flex items-center justify-between w-full flex-wrap gap-4">
                                     <div className="flex gap-2 items-center font-semibold">
-                                        {/* <p className='text-xs py-1 px-2 bg-mx-100 rounded-full text-mx-400 bg-opacity-20 group-hover/down:bg-mx-300 group-hover/down:bg-opacity-100'>Day {data.day}</p> */}
                                         <p className='text-xs'>Day {day}</p>
                                     </div>
-                                    {/* <div className="gap-2 items-center group-hover/down:flex hidden duration-150 hover:text-mx-300">
-                                        <a href='#' className='text-xs font-semibold underline underline-offset-8'>Dowload Album</a>
-                                        <i className="ri-folder-download-fill" />
-                                    </div> */}
                                 </div>
                                 <h2 className='md:text-2xl text-xl underline-mx-300 md:leading-10 leading-0 md:pt-2 pt-4 capitalize'>{nameClean}</h2>
                             </div>
@@ -66,7 +60,7 @@ const Albums = ({ results, results2,  albumsList }: Props) => {
                                     albumImages.slice(0, 4).map((url: any, i: number) => {
                                         return (
                                             <div className="xl:h-40 h-20 w-full rounded-sm overflow-hidden relative mb-16" key={i}>
-                                                <Image alt='Cayman Cookout Thumbnails' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_309,q_29/${url.public_id}`} fill className='object-cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                                                <Image alt='Cayman Cookout Thumbnails' src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_240,w_320,q_30/${url.public_id}.webp`} fill className='object-cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                                             </div>
                                         )
                                     })}
