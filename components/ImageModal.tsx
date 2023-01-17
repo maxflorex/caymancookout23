@@ -32,8 +32,16 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
     const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
 
-    // console.log();
-    
+    const handleNext = (e: any) => {
+        e.preventDefault()
+        next()
+    }
+
+    const handlePrev = (e: any) => {
+        e.preventDefault()
+        prev()
+    }
+
 
 
     return (
@@ -72,26 +80,26 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                 </button>
 
                 {/* NEXT - SIDES */}
-                <span className="group/img group/arrow absolute h-full md:flex hidden items-center left-0 z-[800] cursor-pointer" onClick={prev}>
+                <button className="group/img group/arrow absolute h-full md:flex hidden items-center left-0 z-[800] cursor-pointer" onClick={next}>
                     <i className="ri-arrow-left-line px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[800] ml-8" />
-                </span>
+                </button>
 
                 {/* PREVIOUS - SIDES */}
-                <span className="group/img group/arrow absolute h-full md:flex hidden items-center right-0 z-[800] cursor-pointer" onClick={next}>
+                <button className="group/img group/arrow absolute h-full md:flex hidden items-center right-0 z-[800] cursor-pointer" onClick={prev}>
                     <i className="ri-arrow-right-line px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[800] mr-8" />
-                </span>
+                </button>
 
                 {/* ARROWS - MOBILE */}
                 <div className="absolute bottom-0 w-full flex gap-4 justify-end md:hidden p-4">
                     {/* LEFT - PREV */}
-                    <div className="f1 rounded-full relative z-[800]" onClick={prev}>
+                    <button className="f1 rounded-full relative z-[800]" onClick={prev}>
                         <i className="ri-arrow-left-line px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10" />
-                    </div>
+                    </button>
 
                     {/* RIGHT - NEXT */}
-                    <div className="f1 rounded-full relative w-12 h-12 z-[800]" onClick={next}>
+                    <button className="f1 rounded-full relative w-12 h-12 z-[800]" onClick={next}>
                         <i className="ri-arrow-right-line px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10" />
-                    </div>
+                    </button>
                 </div>
 
                 {/* IMAGE NUMBERS */}
