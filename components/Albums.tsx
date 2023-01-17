@@ -69,7 +69,7 @@ const Albums = ({ results, results2, results3, albumsList }: Props) => {
 
                             {/* BUTTON */}
                             <div className="border-t border-white border-opacity-10 w-full mt-8 absolute bottom-0 md:-mx-4 -mx-2">
-                                <Link href={`/galleries/${slug}`} className="flex items-center gap-2 justify-center py-4 hover:bg-mx-300 hover:text-mx-400 duration-300">
+                                <Link href={`/galleries/${slug}`} className="flex items-center gap-2 justify-center py-4 hover:bg-mx-300 hover:text-mx-400 duration-300 z-10">
                                     <p className='text-center text-xs font-semibold'>View Album</p>
                                     <i className="ri-arrow-right-up-line"></i>
                                 </Link>

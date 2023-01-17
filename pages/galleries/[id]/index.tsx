@@ -157,7 +157,7 @@ const Gallery = ({ results, results2, results3 }: any) => {
                                 <h1 className='text-4xl font-bold capitalize'>{id?.toString().replaceAll('-', ' ')}</h1>
                             </div>
                         </div>
-                        <Link href='/galleries' className='xl:text-md text-sm group/arrow py-2 px-4 z-20 rounded font-bold bg-white text-mx-400 flex items-center gap-2'><i className="ri-arrow-left-line group-hover/arrow:-translate-x-1 duration-200"></i>View Albums</Link>
+                        <Link href='/galleries/' className='xl:text-md text-sm group/arrow py-2 px-4 z-20 rounded font-bold bg-white text-mx-400 flex items-center gap-2'><i className="ri-arrow-left-line group-hover/arrow:-translate-x-1 duration-200"></i>View Albums</Link>
                     </section>
 
                     {/* INSTRUCTIONS */}
