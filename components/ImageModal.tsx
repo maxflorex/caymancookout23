@@ -54,15 +54,15 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative flex justify-center">
                     <img alt='Expanded Image'
-                        src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1400,q_50,w_1400/${images[currentIndex].public_id}.webp`}
+                        src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1400,q_70,w_1400/${images[currentIndex].public_id}.webp`}
                         className='object-contain'
 
                     />
                 </div>
 
                 {/* CLOSE */}
-                <button className="dismiss absolute right-4 top-4 bg-mx-400 hover:bg-mx-300 hover:text-mx-400 rounded leading-none p-2 z-30 text-white border border-white flex items-center border-opacity-10 duration-150" onClick={exitModal}>
-                    <i className="ri-close-fill"></i>
+                <button className="dismiss absolute right-4 top-4 bg-mx-400 hover:bg-mx-300 hover:text-mx-400 rounded leading-none p-2 z-[999] text-white border border-white flex items-center border-opacity-10 duration-150" onClick={() => exitModal}>
+                    <i className="ri-close-fill z-[999] dismiss"></i>
                 </button>
 
                 {/* NEXT - SIDES */}
