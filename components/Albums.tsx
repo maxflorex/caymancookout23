@@ -8,13 +8,14 @@ import { useFilter } from '../hooks/useFilter'
 interface Props {
     results: any,
     results2: any,
+    results3: any,
     albumsList: any
 }
 
 
-const Albums = ({ results, results2, albumsList }: Props) => {
+const Albums = ({ results, results2, results3, albumsList }: Props) => {
 
-    const allResults = [...results.resources, ...results2.resources]
+    const allResults = [...results.resources, ...results2.resources, ...results3.resources]
 
 
     return (

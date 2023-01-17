@@ -24,6 +24,17 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     }).then((r) => r.json()).catch(err => console.log(err))
 
+	const next2 = results2.next_cursor
+
+	const results3 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next2}`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
+
+
+
 	const albums = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/folders/cookout23/`, {
 		method: 'get',
 		headers: {
@@ -35,12 +46,13 @@ export const getStaticProps: GetStaticProps = async () => {
 		props: {
 			results,
 			results2,
+			results3,
 			albums
 		},
 	}
 }
 
-const Galleries = ({ results, results2, albums }: any) => {
+const Galleries = ({ results, results2, results3, albums }: any) => {
 	const Authorization: unknown = useSelector((state: any) => state.authorization.value)	
 
 	const albumList = albums.folders.map((data: any) => {
@@ -50,43 +62,6 @@ const Galleries = ({ results, results2, albums }: any) => {
 		}
 	})	
 
-	// ANIMATE TEXT
-	// const ref = useRef(null)
-	// const inView = useInView(ref)
-	// const ctrl = useAnimation()
-	// const text = 'Cayman Cookout 2023'
-
-	// const characterAnimation = {
-	// 	hidden: {
-	// 		opacity: 0,
-	// 		y: `0.25em`,
-	// 	},
-	// 	visible: {
-	// 		opacity: 1,
-	// 		y: `0em`,
-	// 		transition: {
-	// 			duration: 1,
-	// 			ease: [0.2, 0.65, 0.3, 0.9],
-	// 		},
-	// 	},
-	// };
-
-	// const wordAnimation = {
-	// 	hidden: {},
-	// 	visible: {},
-	// };
-
-	// useEffect(() => {
-	// 	if (inView) {
-	// 		ctrl.start("visible");
-	// 	}
-	// 	if (!inView) {
-	// 		ctrl.start("hidden");
-	// 	}
-	// }, [ctrl, inView]);
-
-
-	//  - - - - 
 
 	if (!Authorization) {
 		return <NotAuthorized />
@@ -126,40 +101,6 @@ const Galleries = ({ results, results2, albums }: any) => {
 						<button className='xl:text-md text-sm group/btn py-2 px-4 z-20 rounded font-bold bg-white text-mx-400 flex items-center gap-2 hover:scale-105 active:scale-95 duration-200' onClick={handleDownload}><i className="ri-download-line"></i>Download All</button>
 					</section>
 
-					{/* - - - ANIMATION - - - */}
-					{/* <h1 id='TITLE' className="bg-mx-100 text-mx-400 p-2 rounded">
-						{text.split('').map((word, i) => {
-							return (
-								<motion.span
-									id='WORD'
-									key={i}
-									// className='inline-block whitespace-nowrap'
-									ref={ref}
-									aria-hidden="true"
-									initial="hidden"
-									animate={ctrl}
-									variants={wordAnimation}
-									transition={{
-										delayChildren: i * 0.1,
-										staggerChildren: 0.5,
-									}}
-								>
-									{word.split('').map((character, i) => {
-										return (
-											<motion.span id='CHAR'
-												aria-hidden="true"
-												key={i}
-												variants={characterAnimation}
-												className='inline-block'
-											>
-												{character}
-											</motion.span>
-										)
-									})}
-
-								</motion.span>)
-						})}
-					</h1> */}
 
 					{/* INSTRUCTIONS */}
 					<section>
@@ -174,7 +115,7 @@ const Galleries = ({ results, results2, albums }: any) => {
 					</section>
 
 					{/* ALBUMS */}
-					<Albums results={results} results2={results2} albumsList={albumList} />
+					<Albums results={results} results2={results2} results3={results3} albumsList={albumList} />
 				</main>
 
 				<footer className='absolute bottom-0 w-full text-center py-4 text-xs'>Deep Blue Images  |  © 2023</footer>

@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -8,7 +7,6 @@ import ImageModal from '../../../components/ImageModal'
 import NotAuthorized from '../../../components/NotAuthorized'
 import { useSelector } from 'react-redux'
 import { AnimatePresence, motion } from 'framer-motion'
-import { container, item } from '../../../animate/variations'
 import { GetStaticProps } from 'next'
 import { useFilter } from '../../../hooks/useFilter'
 
@@ -38,6 +36,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async () => {
 
+
     const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
         method: 'get',
         headers: {
@@ -54,16 +53,26 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     }).then((r) => r.json()).catch(err => console.log(err))
 
+    const next2 = results2.next_cursor
+
+    const results3 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next2}`, {
+        method: 'get',
+        headers: {
+            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+        }
+    }).then((r) => r.json()).catch(err => console.log(err))
+
     return {
         props: {
             results,
             results2,
+            results3
         },
     }
 }
 
 
-const Gallery = ({ results, results2 }: any) => {
+const Gallery = ({ results, results2, results3 }: any) => {
     const [expand, setExpand] = useState(false)
     const router = useRouter()
     const { id } = router.query
@@ -73,11 +82,11 @@ const Gallery = ({ results, results2 }: any) => {
 
     const filter1 = useFilter(results, id)
     const filter2 = useFilter(results2, id)
+    const filter3 = useFilter(results3, id)
 
-    const filtered = [...filter1, ...filter2]
+    const filtered = [...filter1, ...filter2, ...filter3]
 
     // * DEFAULT VALUES
-    let images = filtered
     let l = filtered.length || 0
     const day = filtered[0]?.folder.slice(16, 17)
 
@@ -103,22 +112,13 @@ const Gallery = ({ results, results2 }: any) => {
         }
     }
 
-
-    const handleClick = (i: number) => {
-
-        setExpand(true)
-        setCurrentIndex(i)
-        // DISABLE SCROLLING
-        document.body.style.overflow = "hidden";
-    }
-
     // DO NOT SHOW IF NOT AUTHORIZED
     if (!Authorization) {
         return <NotAuthorized />
     }
 
-    const handleExpand = (index: number, url: string) => {
-        setCurrentIndex(index)
+    const handleExpand = (i: number, url: string) => {
+        setCurrentIndex(i)
         setCurrentUrl(url)
         setExpand(true)
         // DISABLE SCROLLING
@@ -173,7 +173,7 @@ const Gallery = ({ results, results2 }: any) => {
                     {/* IMAGES */}
                     <section>
                         <div className="py-12 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 md:gap-4 gap-2 mb-8">
-                            {images.map((image: any, i: number) => {
+                            {filtered.map((image: any, i: number) => {
                                 return (
                                     <motion.div
                                         key={i}
@@ -205,7 +205,7 @@ const Gallery = ({ results, results2 }: any) => {
                         setExpand={setExpand}
                         next={nextImage}
                         prev={prevImage}
-                        images={images}
+                        images={filtered}
                         currentIndex={currentIndex}
                         currentUrl={currentUrl}
                     />)}

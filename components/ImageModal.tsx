@@ -50,7 +50,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative flex justify-center">
                     <img alt='Expanded Image'
-                    src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1200,q_auto:eco,w_1200/${images[prevImg].public_id}.webp`}
+                    src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1000,q_40,w_1000/${images[currentIndex].public_id}.webp`}
                     className='object-contain'
                     
                     />
@@ -82,13 +82,13 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                     {/* LEFT - PREV */}
                     <div className="f1 rounded-full relative" onClick={prev}>
                         <i className="ri-arrow-left-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
-                        {/* <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[prevImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' /> */}
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[prevImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
 
                     {/* RIGHT - NEXT */}
                     <div className="f1 rounded-full relative" onClick={next}>
                         <i className="ri-arrow-right-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
-                        {/* <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[nextImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' /> */}
+                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[nextImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
                     </div>
                 </div>
 
