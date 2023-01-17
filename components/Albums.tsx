@@ -26,7 +26,7 @@ const Albums = ({ results, results2, albumsList }: Props) => {
             {albumsList.map(({ name, nameClean }: any, i: number) => {
 
                 // GET DAY NUMBER
-                const day = name.substring(3, 4)
+                const day = name.substring(6, 7)
 
                 // FIND IMAGES IN THE ALBUM
                 const albumImages = [...allResults].filter((element: any) => {
@@ -34,7 +34,7 @@ const Albums = ({ results, results2, albumsList }: Props) => {
                 })
 
                 // SLUG
-                const slug = name.substring(5)
+                const slug = name.substring(8)
 
 
                 return (

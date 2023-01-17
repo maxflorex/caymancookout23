@@ -23,7 +23,7 @@ export const getStaticPaths = async () => {
     const paths = albums.folders.map((item: any) => {
         return {
             params: {
-                id: item.name.substring(5)
+                id: item.name.substring(8)
             }
         }
     })
@@ -62,11 +62,12 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 
-const Gallery = ({ results, results2}: any) => {
+const Gallery = ({ results, results2 }: any) => {
     const [expand, setExpand] = useState(false)
     const router = useRouter()
     const { id } = router.query
     const [currentIndex, setCurrentIndex] = useState(0)
+    const [currentUrl, setCurrentUrl] = useState('')
     const Authorization: unknown = useSelector((state: any) => state.authorization.value)
 
     const filter1 = useFilter(results, id)
@@ -77,7 +78,7 @@ const Gallery = ({ results, results2}: any) => {
     // * DEFAULT VALUES
     let images = filtered
     let l = filtered.length || 0
-    const day = filtered[0]?.folder.slice(13, 14)
+    const day = filtered[0]?.folder.slice(16, 17)
 
     // * NEXT
     const nextImage = (e: any) => {
@@ -111,8 +112,16 @@ const Gallery = ({ results, results2}: any) => {
     }
 
     // DO NOT SHOW IF NOT AUTHORIZED
-    if (!Authorization) {
+    if (Authorization) {
         return <NotAuthorized />
+    }
+
+    const handleExpand = (index: number, url: string) => {
+        setCurrentIndex(index)
+        setCurrentUrl(url)
+        setExpand(true)
+        // DISABLE SCROLLING
+        document.body.style.overflow = "hidden";
     }
 
 
@@ -133,7 +142,6 @@ const Gallery = ({ results, results2}: any) => {
                         <Link href='/' className='font-semibold'>Deep Blue Images</Link>
                         <div className="flex gap-2 items-center">
                             <a href="mailto:info@deepblueimages.com" className='btn3'>Contact</a>
-                            {/* <i className="ri-menu-4-line" /> */}
                         </div>
                     </nav>
                 </header>
@@ -175,9 +183,9 @@ const Gallery = ({ results, results2}: any) => {
                                     >
                                         <Image
                                             alt='Image thumbnail'
-                                            src={`https://res.cloudinary.com/dbi/image/upload/c_fill,h_240,w_320,q_40/${image.public_id}.webp`} fill
+                                            src={`https://res.cloudinary.com/dbi/image/upload/c_thumb,q_auto:low,w_320/${image.public_id}.webp`} fill
                                             className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110'
-                                            onClick={() => handleClick(i)}
+                                            onClick={() => handleExpand(i, image.secure_url)}
                                             sizes="(max-width: 480px) 100vw, (max-width:960px) 50vw, 33vw"
                                             placeholder='blur' blurDataURL={`/_next/image?url=${image.public_id}&w=16&q=1`}
                                         />
@@ -200,6 +208,7 @@ const Gallery = ({ results, results2}: any) => {
                         prev={prevImage}
                         images={images}
                         currentIndex={currentIndex}
+                        // currentUrl={currentUrl}
                     />)}
             </AnimatePresence>
         </>

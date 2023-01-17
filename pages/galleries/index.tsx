@@ -46,7 +46,7 @@ const Galleries = ({ results, results2, albums }: any) => {
 	const albumList = albums.folders.map((data: any) => {
 		return {
 			name: data.name,
-			nameClean: data.name.slice(5).replaceAll('-', ' ')
+			nameClean: data.name.slice(8).replaceAll('-', ' ')
 		}
 	})	
 
@@ -88,7 +88,7 @@ const Galleries = ({ results, results2, albums }: any) => {
 
 	//  - - - - 
 
-	if (!Authorization) {
+	if (Authorization) {
 		return <NotAuthorized />
 	}
 
