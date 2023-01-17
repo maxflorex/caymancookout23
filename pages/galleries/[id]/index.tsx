@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -181,13 +182,11 @@ const Gallery = ({ results, results2 }: any) => {
                                         transition={{ duration: 0.2, ease: 'easeOut', delay: 0.2 * i }}
                                         className="w-full md:h-48 h-24 relative rounded-sm overflow-hidden cursor-pointer hover:scale-105 duration-200"
                                     >
-                                        <Image
+                                        <img
                                             alt='Image thumbnail'
-                                            src={`https://res.cloudinary.com/dbi/image/upload/c_thumb,q_auto:low,w_320/${image.public_id}.webp`} fill
-                                            className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110'
+                                            src={`https://res.cloudinary.com/dbi/image/upload/q_auto:low,w_320/${image.public_id}.webp`}
+                                            className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110 w-full h-full'
                                             onClick={() => handleExpand(i, image.secure_url)}
-                                            sizes="(max-width: 480px) 100vw, (max-width:960px) 50vw, 33vw"
-                                            placeholder='blur' blurDataURL={`/_next/image?url=${image.public_id}&w=16&q=1`}
                                         />
                                     </motion.div>
                                 )
@@ -208,7 +207,7 @@ const Gallery = ({ results, results2 }: any) => {
                         prev={prevImage}
                         images={images}
                         currentIndex={currentIndex}
-                        // currentUrl={currentUrl}
+                        currentUrl={currentUrl}
                     />)}
             </AnimatePresence>
         </>

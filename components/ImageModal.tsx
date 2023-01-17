@@ -1,17 +1,22 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
-import React from 'react'
+import React, { ChangeEvent, SyntheticEvent } from 'react'
 import { motion } from 'framer-motion'
 import { item } from '../animate/variations'
+import { useDownload } from '../hooks/useDownload'
 
 type Props = {
     setExpand: any,
     next: any,
     prev: any,
     images: any,
-    currentIndex: number
+    currentIndex: number,
+    currentUrl: string
 }
 
-const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
+
+
+const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }: Props) => {
 
     let length = images?.length || 0
 
@@ -24,6 +29,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
     const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
+    
 
     return (
         <motion.div
@@ -35,15 +41,19 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
 
                 {/* DOWNLOAD */}
                 <motion.div variants={item} className="absolute top-0 flex items-start justify-start w-full p-4">
-                    <a href={images[currentIndex].url} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10'>
+                    <a href={currentUrl} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10' onClick={useDownload}  >
                         <i className="ri-download-line"></i>
                         Download
                     </a>
                 </motion.div>
 
                 {/* LARGE IMAGE */}
-                <div className="h-[75vh] w-[85vw] relative">
-                    <Image alt='Expanded Image' src={`https://res.cloudinary.com/dbi/image/upload/c_limit,dpr_auto,f_webp,h_2400,q_40,w_2400/${images[currentIndex].public_id}.webp`} fill priority className='object-contain' sizes="(max-width: 1200px) 100vw, (max-width: 2400px) 50vw, 33vw" placeholder='blur' blurDataURL={`/_next/image?url=${images[currentIndex].url}&w=16&q=1`} />
+                <div className="h-[75vh] w-[85vw] relative flex justify-center">
+                    <img alt='Expanded Image'
+                    src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1200,q_auto:eco,w_1200/${images[prevImg].public_id}.webp`}
+                    className='object-contain'
+                    
+                    />
                 </div>
 
                 {/* CLOSE */}
@@ -72,13 +82,13 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                     {/* LEFT - PREV */}
                     <div className="f1 rounded-full relative" onClick={prev}>
                         <i className="ri-arrow-left-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
-                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[prevImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
+                        {/* <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[prevImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' /> */}
                     </div>
 
                     {/* RIGHT - NEXT */}
                     <div className="f1 rounded-full relative" onClick={next}>
                         <i className="ri-arrow-right-line absolute top-0 flex w-full h-full items-center justify-center text-white z-20" />
-                        <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[nextImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' />
+                        {/* <Image alt='Next Image' src={`https://res.cloudinary.com/dbi/image/upload/h_200,q_20/${images[nextImg].public_id}.webp`} width={48} height={48} className='object-cover z-10 opacity-50 rounded-full h-12 w-12' /> */}
                     </div>
                 </div>
 
