@@ -88,7 +88,7 @@ const Galleries = ({ results, results2, albums }: any) => {
 
 	//  - - - - 
 
-	if (Authorization) {
+	if (!Authorization) {
 		return <NotAuthorized />
 	}
 
