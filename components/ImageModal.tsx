@@ -21,23 +21,27 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
     let length = images?.length || 0
 
     const exitModal = (e: any) => {
-        e.preventDefault()
+        if (e.target.classList.contains('dismiss')) {
+            e.preventDefault()
 
-        setExpand(false)
-        document.body.style.overflow = "unset";
+            setExpand(false)
+            document.body.style.overflow = "visible";
+        }
     }
 
     const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
-    
+
 
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, ease: 'easeIn', staggerChildren: 0.5 }}
-            className='fixed top-0 left-0 bg-mx-400 bg-opacity-90 backdrop-blur-sm w-full h-full z-30'>
-            <div className="f1 w-full h-full relative">
+            className='fixed top-0 left-0 bg-mx-400 bg-opacity-90 backdrop-blur-sm w-full h-full z-30'
+            onClick={exitModal}
+            >
+            <div className="f1 w-full h-full relative dismiss">
 
                 {/* DOWNLOAD */}
                 <motion.div variants={item} className="absolute top-0 flex items-start justify-start w-full p-4">
@@ -50,14 +54,14 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative flex justify-center">
                     <img alt='Expanded Image'
-                    src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1000,q_40,w_1000/${images[currentIndex].public_id}.webp`}
-                    className='object-contain'
-                    
+                        src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1400,q_50,w_1400/${images[currentIndex].public_id}.webp`}
+                        className='object-contain'
+
                     />
                 </div>
 
                 {/* CLOSE */}
-                <button className="absolute right-4 top-4 bg-mx-400 hover:bg-mx-300 hover:text-mx-400 rounded leading-none p-2 z-30 text-white border border-white flex items-center border-opacity-10 duration-150" onClick={exitModal}>
+                <button className="dismiss absolute right-4 top-4 bg-mx-400 hover:bg-mx-300 hover:text-mx-400 rounded leading-none p-2 z-30 text-white border border-white flex items-center border-opacity-10 duration-150" onClick={exitModal}>
                     <i className="ri-close-fill"></i>
                 </button>
 
