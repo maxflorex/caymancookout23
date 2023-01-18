@@ -20,7 +20,7 @@ const DownloadHRModal = ({ url, setShowHR }: Props) => {
                 <img src={url} alt="Higher Resolution Image" className='w-[90vw] h-[80vh] object-contain' />
                 <ul className='flex flex-col gap-2 list-outside list-decimal'>
                     <li className='font-semibold text-white'>Click and hold the image</li>
-                    <li className='font-semibold text-white'>Save it to gallery</li>
+                    <li className='font-semibold text-white'>Save to photos</li>
                 </ul>
             </div>
         </div >
