@@ -50,14 +50,6 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                     </a>
                 </motion.div>
 
-                {/* DOWNLOAD MOBILE */}
-                <motion.div variants={item} className="absolute top-0 flex md:hidden items-start justify-start w-full p-4">
-                    <a href={currentUrl} className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[999]' target="_blank" rel='noreferrer' >
-                        <i className="ri-download-line"></i>
-                        High Resolution
-                    </a>
-                </motion.div>
-
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative flex justify-center">
                     <img alt='Expanded Image'
