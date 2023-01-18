@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from 'next/image'
-import React, { ChangeEvent, SyntheticEvent } from 'react'
 import { motion } from 'framer-motion'
 import { item } from '../animate/variations'
 import { useDownload } from '../hooks/useDownload'
@@ -29,19 +27,9 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
         }
     }
 
+
     const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
-
-    const handleNext = (e: any) => {
-        e.preventDefault()
-        next()
-    }
-
-    const handlePrev = (e: any) => {
-        e.preventDefault()
-        prev()
-    }
-
 
 
     return (
@@ -54,11 +42,19 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
         >
             <div className="f1 w-full h-full relative dismiss">
 
-                {/* DOWNLOAD */}
-                <motion.div variants={item} className="absolute top-0 flex items-start justify-start w-full p-4">
+                {/* DOWNLOAD DESKTOP */}
+                <motion.div variants={item} className="absolute top-0 md:flex hidden items-start justify-start w-full p-4">
                     <a href={currentUrl} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[999]' onClick={useDownload}  >
                         <i className="ri-download-line"></i>
                         Download
+                    </a>
+                </motion.div>
+
+                {/* DOWNLOAD MOBILE */}
+                <motion.div variants={item} className="absolute top-0 flex md:hidden items-start justify-start w-full p-4">
+                    <a href={currentUrl} className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[999]' target="_blank" rel='noreferrer' >
+                        <i className="ri-download-line"></i>
+                        High Resolution
                     </a>
                 </motion.div>
 
@@ -108,8 +104,8 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
 
 
 
-            </div>
-        </motion.div>
+            </div >
+        </motion.div >
     )
 }
 

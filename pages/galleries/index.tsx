@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Albums from '../../components/Albums'
 import NotAuthorized from '../../components/NotAuthorized'
@@ -8,30 +9,30 @@ import NotAuthorized from '../../components/NotAuthorized'
 export const getStaticProps: GetStaticProps = async () => {
 
 
-    const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
-        method: 'get',
-        headers: {
-            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
-        }
-    }).then((r) => r.json()).catch(err => console.log(err))
+	const results = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500/`, {
+		method: 'get',
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+		}
+	}).then((r) => r.json()).catch(err => console.log(err))
 
-    const next = results.next_cursor
+	const next = results.next_cursor
 
-    const results2 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next}`, {
-        method: 'get',
-        headers: {
-            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
-        }
-    }).then((r) => r.json()).catch(err => console.log(err))
+	const results2 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next}`, {
+		method: 'get',
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+		}
+	}).then((r) => r.json()).catch(err => console.log(err))
 
 	const next2 = results2.next_cursor
 
 	const results3 = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/resources/image?max_results=500&next_cursor=${next2}`, {
-        method: 'get',
-        headers: {
-            Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
-        }
-    }).then((r) => r.json()).catch(err => console.log(err))
+		method: 'get',
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY + ':' + process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET).toString('base64')}`
+		}
+	}).then((r) => r.json()).catch(err => console.log(err))
 
 
 
@@ -53,14 +54,18 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Galleries = ({ results, results2, results3, albums }: any) => {
-	const Authorization: unknown = useSelector((state: any) => state.authorization.value)	
+	const Authorization: unknown = useSelector((state: any) => state.authorization.value)
 
 	const albumList = albums.folders.map((data: any) => {
 		return {
 			name: data.name,
 			nameClean: data.name.slice(8).replaceAll('-', ' ')
 		}
-	})	
+	})
+
+	useEffect(() => {
+		document.body.style.overflow = "auto";
+	}, [])
 
 
 	if (!Authorization) {
