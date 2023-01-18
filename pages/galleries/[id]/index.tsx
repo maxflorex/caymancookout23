@@ -77,7 +77,6 @@ const Gallery = ({ results, results2, results3 }: any) => {
     const router = useRouter()
     const { id } = router.query
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [currentUrl, setCurrentUrl] = useState('')
     const Authorization: unknown = useSelector((state: any) => state.authorization.value)
 
     const filter1 = useFilter(results, id)
@@ -117,9 +116,8 @@ const Gallery = ({ results, results2, results3 }: any) => {
         return <NotAuthorized />
     }
 
-    const handleExpand = (i: number, url: string) => {
+    const handleExpand = (i: number) => {
         setCurrentIndex(i)
-        setCurrentUrl(url)
         setExpand(true)
         // DISABLE SCROLLING
         document.body.style.overflow = "hidden";
@@ -186,7 +184,7 @@ const Gallery = ({ results, results2, results3 }: any) => {
                                             alt='Image thumbnail'
                                             src={`https://res.cloudinary.com/dbi/image/upload/q_auto:low,w_320/${image.public_id}.webp`}
                                             className='object-cover opacity-80 hover:opacity-100 duration-300 cursor-pointer hover:scale-110 w-full h-full'
-                                            onClick={() => handleExpand(i, image.secure_url)}
+                                            onClick={() => handleExpand(i)}
                                         />
                                     </motion.div>
                                 )
@@ -207,7 +205,6 @@ const Gallery = ({ results, results2, results3 }: any) => {
                         prev={prevImage}
                         images={filtered}
                         currentIndex={currentIndex}
-                        currentUrl={currentUrl}
                     />)}
             </AnimatePresence>
         </>

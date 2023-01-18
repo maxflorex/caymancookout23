@@ -72,10 +72,6 @@ const Galleries = ({ results, results2, results3, albums }: any) => {
 		return <NotAuthorized />
 	}
 
-	const handleDownload = () => {
-		return alert('Will get you a download link soon!')
-	}
-
 	return (
 		<>
 			<Head>
@@ -103,7 +99,7 @@ const Galleries = ({ results, results2, results3, albums }: any) => {
 					{/* TITLE & DOWNLOAD  */}
 					<section className='flex flex-wrap justify-between items-center py-12 border-b border-white border-opacity-10 gap-2'>
 						<h1 className='text-mx-300 font-semibold xl:text-4xl text-2xl'>Cayman Cookout 2023</h1>
-						<button className='xl:text-md text-sm group/btn py-2 px-4 z-20 rounded font-bold bg-white text-mx-400 flex items-center gap-2 hover:scale-105 active:scale-95 duration-200' onClick={handleDownload}><i className="ri-download-line"></i>Download All</button>
+						{/* <button className='xl:text-md text-sm group/btn py-2 px-4 z-20 rounded font-bold bg-white text-mx-400 flex items-center gap-2 hover:scale-105 active:scale-95 duration-200' onClick={handleDownload}><i className="ri-download-line"></i>Download All</button> */}
 					</section>
 
 

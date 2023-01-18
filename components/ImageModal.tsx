@@ -1,36 +1,36 @@
 /* eslint-disable @next/next/no-img-element */
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { item } from '../animate/variations'
 import { useDownload } from '../hooks/useDownload'
+import DownloadHRModal from './DownloadHRModal'
 
 type Props = {
     setExpand: any,
     next: any,
     prev: any,
     images: any,
-    currentIndex: number,
-    currentUrl: string
+    currentIndex: number
 }
 
 
 
-const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }: Props) => {
-
+const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
+    const [showHR, setShowHR] = useState(false)
     let length = images?.length || 0
 
     const exitModal = (e: any) => {
         if (e.target.classList.contains('dismiss')) {
             e.preventDefault()
 
+            setShowHR(false)
             setExpand(false)
             document.body.style.overflow = "visible";
         }
     }
 
-
-    const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
-    const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1
-
+    // const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
+    // const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1    
 
     return (
         <motion.div
@@ -44,7 +44,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
 
                 {/* DOWNLOAD DESKTOP */}
                 <motion.div variants={item} className="absolute top-0 md:flex hidden items-start justify-start w-full p-4">
-                    <a href={currentUrl} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[999]' onClick={useDownload}  >
+                    <a href={`https://res.cloudinary.com/dbi/image/upload/${images[currentIndex].public_id}`} download='Cayman-cookout-23' className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[999]' onClick={useDownload}  >
                         <i className="ri-download-line"></i>
                         Download
                     </a>
@@ -54,11 +54,11 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                 <div className="h-[75vh] w-[85vw] relative flex justify-center">
                     <img alt='Expanded Image'
                         src={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1400,q_70,w_1400/${images[currentIndex].public_id}`}
-                        srcSet={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1400,q_70,w_1400/${images[currentIndex].public_id}.webp 100vw,
-                        https://res.cloudinary.com/dbi/image/upload/c_limit,h_1000,q_70,w_1000/${images[currentIndex].public_id}.webp 75vw,
-                        https://res.cloudinary.com/dbi/image/upload/c_limit,h_800,q_70,w_800/${images[currentIndex].public_id}.webp 55vw,                        
+                        srcSet={`https://res.cloudinary.com/dbi/image/upload/c_limit,h_1400,q_70,w_1400/${images[currentIndex].public_id}.webp 1800w,
+                        https://res.cloudinary.com/dbi/image/upload/c_limit,h_1200,q_80,w_1200/${images[currentIndex].public_id}.webp 1400w,
+                        https://res.cloudinary.com/dbi/image/upload/c_limit,h_1200,q_60,w_1200/${images[currentIndex].public_id}.webp 1200w,                        
                         `}
-                        className='object-contain'
+                        className='object-contain'                        
                     />
                 </div>
 
@@ -93,7 +93,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex, currentUrl }:
                 {/* IMAGE NUMBERS */}
                 <p className='text-white font-bold text-sm absolute bottom-4 left-4'>{currentIndex + 1} / {length}</p>
 
-
+                {showHR && <DownloadHRModal url={`https://res.cloudinary.com/dbi/image/upload/${images[currentIndex].public_id}`} />}
 
 
             </div >
