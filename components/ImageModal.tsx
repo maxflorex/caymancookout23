@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { item } from '../animate/variations'
 import { useDownload } from '../hooks/useDownload'
 import DownloadHRModal from './DownloadHRModal'
@@ -29,6 +29,10 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
         }
     }
 
+    useEffect(() => {
+        setShowHR(false)
+    }, [])
+
     // const prevImg = currentIndex === 0 ? length - 1 : currentIndex - 1
     // const nextImg = length - 1 <= currentIndex ? 1 : currentIndex + 1    
 
@@ -50,6 +54,14 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                     </a>
                 </motion.div>
 
+                {/* DOWNLOAD MOBILE */}
+                <motion.div variants={item} className="absolute top-0 flex md:hidden items-start justify-start w-full p-4">
+                    <span className='px-4 py-2 text-sm active:scale-95 rounded-md bg-mx-400 hover:bg-mx-300 duration-200 flex items-center gap-2 text-white border border-white border-opacity-10 z-[997]' onClick={() => setShowHR(true)}  >
+                        <i className="ri-download-line"></i>
+                        Download
+                    </span>
+                </motion.div>
+
                 {/* LARGE IMAGE */}
                 <div className="h-[75vh] w-[85vw] relative flex justify-center">
                     <img alt='Expanded Image'
@@ -58,7 +70,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                         https://res.cloudinary.com/dbi/image/upload/c_limit,h_1200,q_80,w_1200/${images[currentIndex].public_id}.webp 1400w,
                         https://res.cloudinary.com/dbi/image/upload/c_limit,h_1200,q_60,w_1200/${images[currentIndex].public_id}.webp 1200w,                        
                         `}
-                        className='object-contain'                        
+                        className='object-contain'
                     />
                 </div>
 
@@ -93,7 +105,7 @@ const ImageModal = ({ setExpand, next, prev, images, currentIndex }: Props) => {
                 {/* IMAGE NUMBERS */}
                 <p className='text-white font-bold text-sm absolute bottom-4 left-4'>{currentIndex + 1} / {length}</p>
 
-                {showHR && <DownloadHRModal url={`https://res.cloudinary.com/dbi/image/upload/${images[currentIndex].public_id}`} />}
+                {showHR && <DownloadHRModal url={`https://res.cloudinary.com/dbi/image/upload/${images[currentIndex].public_id}`} setShowHR={setShowHR} />}
 
 
             </div >

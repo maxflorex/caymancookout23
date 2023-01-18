@@ -12,7 +12,6 @@ export const useDownload: any = (e: any, fileName: string) => {
             link.setAttribute("download", 'cayman-cookout-2023.jpg'); //or any other extension
             document.body.appendChild(link);
             link.click();
-            res.blob()
         });
     }).catch(err => {
         console.log(err);
